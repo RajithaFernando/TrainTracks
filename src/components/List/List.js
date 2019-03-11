@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
-import Listitem from '../List/List';
+import Listitem from '../Listitem/Listitem';
 
 const list = props => {
     const output = props.inputt.map((inp, i) =>(
