@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "react": "16.6.3",
-    "react-native": "0.58.6"
+    "react-native": "^0.55.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-flow": "^7.0.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "24.1.0",
+    "babel-jest": "^23.4.2",
     "jest": "24.1.0",
     "metro-react-native-babel-preset": "0.53.0",
     "react-test-renderer": "16.6.3"
