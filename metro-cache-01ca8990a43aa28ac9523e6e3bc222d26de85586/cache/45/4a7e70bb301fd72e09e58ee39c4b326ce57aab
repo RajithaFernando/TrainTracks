@@ -1,0 +1,60 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var _jsxFileName = "/home/rajitha/TrainTracks/src/components/Listitem/Listitem.js";
+
+    var _react = _require(_dependencyMap[0], "react");
+
+    var _react2 = _interopRequireDefault(_react);
+
+    var _reactNative = _require(_dependencyMap[1], "react-native");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    var listitem = function listitem(props) {
+        return _react2.default.createElement(
+            _reactNative.TouchableOpacity,
+            {
+                onPress: props.pressed,
+                __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 4
+                }
+            },
+            _react2.default.createElement(
+                _reactNative.View,
+                {
+                    style: sty.list,
+                    __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 5
+                    }
+                },
+                _react2.default.createElement(
+                    _reactNative.Text,
+                    {
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 6
+                        }
+                    },
+                    props.search
+                )
+            )
+        );
+    };
+
+    var sty = _reactNative.StyleSheet.create({
+        list: {
+            width: '100%',
+            padding: 10,
+            backgroundColor: '#eee',
+            marginLeft: 10,
+            marginRight: 10,
+            marginTop: 5
+        }
+    });
+
+    exports.default = listitem;
+});

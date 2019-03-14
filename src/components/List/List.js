@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {ScrollView , View, StyleSheet} from 'react-native';
 
 import Listitem from '../Listitem/Listitem';
 
@@ -8,10 +8,10 @@ const list = props => {
         <Listitem 
             key={i} 
             search={inp} 
-            pressed={() => props.delt(i)}       
+            pressed={() => props.select(i)}       
         />
         ));
-    return <View style = {sty3.list}>{output}</View>
+    return <ScrollView style = {sty3.list}>{output}</ScrollView>
 };
 
 const sty3 = StyleSheet.create({

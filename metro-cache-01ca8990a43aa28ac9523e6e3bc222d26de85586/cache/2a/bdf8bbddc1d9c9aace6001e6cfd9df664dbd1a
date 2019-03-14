@@ -1,0 +1,137 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+
+    var _react2 = _require(_dependencyMap[0], "react");
+
+    var _react3 = _interopRequireDefault(_react2);
+
+    var _index = _require(_dependencyMap[1], "./../../../node_modules/react-transform-hmr/lib/index.js");
+
+    var _index2 = _interopRequireDefault(_index);
+
+    var _jsxFileName = "/home/rajitha/TrainTracks/src/components/SearchInput/SearchInput.js";
+
+    var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+    var _reactNative = _require(_dependencyMap[2], "react-native");
+
+    function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+    function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+    function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+    function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+    var _components = {
+        SearchInput: {
+            displayName: "SearchInput"
+        }
+    };
+
+    var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+        filename: "/home/rajitha/TrainTracks/src/components/SearchInput/SearchInput.js",
+        components: _components,
+        locals: [module],
+        imports: [_react3.default]
+    });
+
+    function _wrapComponent(id) {
+        return function (Component) {
+            return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+        };
+    }
+
+    var SearchInput = _wrapComponent("SearchInput")(function (_Component) {
+        _inherits(SearchInput, _Component);
+
+        function SearchInput() {
+            var _ref;
+
+            var _temp, _this, _ret;
+
+            _classCallCheck(this, SearchInput);
+
+            for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                args[_key] = arguments[_key];
+            }
+
+            return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = SearchInput.__proto__ || Object.getPrototypeOf(SearchInput)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+                search: ''
+            }, _this.searchHandler = function (val) {
+                _this.setState({
+                    search: val
+                });
+            }, _this.inputHandler = function () {
+                if (_this.state.search.trim() === "") {
+                    return;
+                }
+
+                _this.props.onPlaceAdded(_this.state.search);
+            }, _temp), _possibleConstructorReturn(_this, _ret);
+        }
+
+        _createClass(SearchInput, [{
+            key: "render",
+            value: function render() {
+                return _react3.default.createElement(
+                    _reactNative.View,
+                    {
+                        style: sty2.inputContainer,
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 26
+                        }
+                    },
+                    _react3.default.createElement(_reactNative.TextInput, {
+                        style: sty2.searchbox,
+                        value: this.state.search,
+                        onChangeText: this.searchHandler,
+                        placeholder: "Some Note",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 27
+                        }
+                    }),
+                    _react3.default.createElement(_reactNative.Button, {
+                        style: sty2.button,
+                        onPress: this.inputHandler,
+                        title: "Search",
+                        __source: {
+                            fileName: _jsxFileName,
+                            lineNumber: 33
+                        }
+                    })
+                );
+            }
+        }]);
+
+        return SearchInput;
+    }(_react2.Component));
+
+    var sty2 = _reactNative.StyleSheet.create({
+        inputContainer: {
+            width: "100%",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            backgroundColor: "#F5FCFF"
+        },
+        searchbox: {
+            width: 300,
+            borderColor: "black",
+            borderWidth: 1,
+            backgroundColor: "#F5FCFF"
+        },
+        button: {
+            padding: 20,
+            paddingLeft: 10,
+            borderColor: 'red',
+            backgroundColor: 'red'
+        }
+    });
+
+    exports.default = SearchInput;
+});

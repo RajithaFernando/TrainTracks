@@ -48,16 +48,23 @@ const sty2 = StyleSheet.create({
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-between",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#F5FCFF"
       },
     searchbox:{
         width:300, 
         borderColor:"black", 
-        borderWidth:1
+        borderWidth:1,
+        backgroundColor:"#F5FCFF"
+
 
     },
     button:{
         padding:20,
+        paddingLeft:10,
+        borderColor:'red',
+        backgroundColor:'red'
+        
     },
 })
 

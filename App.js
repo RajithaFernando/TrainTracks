@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View,} from 'react-native';
 
 import SearchInput from './src/components/SearchInput/SearchInput';
 import List from './src/components/List/List';
+import Traindetails from './src/components/Traindetails/Traindetails';
 
 // type Props = {};
 export default class App extends Component {
   state = {
-    inputt:[]
+    inputt:['Train 1', 'Train 2', 'Train 3']
   };
 inputHandler = search =>{
   this.setState(prevState =>{
@@ -16,7 +17,7 @@ inputHandler = search =>{
     };
   });
 };
-delHandler = index =>{
+selectHandler = index =>{
   this.setState(prevState=>{
     return {
       inputt:prevState.inputt.filter((inp,i) =>{
@@ -27,11 +28,13 @@ delHandler = index =>{
 };
   render(){  
     return (
-      <View style={styles.container}>   
+      <View style={styles.container}>  
+          {/* <Traindetails />  */}
+          <Image source={require('./img/logo.png')} style={styles.img} />
           <SearchInput onPlaceAdded ={this.inputHandler} />
           <List 
             inputt = {this.state.inputt}
-            delt = {this.delHandler} 
+            select = {this.selectHandler} 
           />  
       </View>
     );
@@ -44,6 +47,11 @@ const styles = StyleSheet.create({
     padding: 26,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#000000',
+  },
+  img: {
+    height: 100,
+    justifyContent: "center",
+    resizeMode: "contain",
   }
 });

@@ -1,0 +1,10 @@
+__d(function (global, _require, module, exports, _dependencyMap) {
+  if (process.env.NODE_ENV !== 'production') {
+    var ReactIs = _require(_dependencyMap[0], 'react-is');
+
+    var throwOnDirectAccess = true;
+    module.exports = _require(_dependencyMap[1], './factoryWithTypeCheckers')(ReactIs.isElement, throwOnDirectAccess);
+  } else {
+    module.exports = _require(_dependencyMap[2], './factoryWithThrowingShims')();
+  }
+});
