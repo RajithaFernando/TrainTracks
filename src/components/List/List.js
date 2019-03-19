@@ -8,7 +8,8 @@ const list = props => {
         <Listitem 
             key={i} 
             search={inp} 
-            pressed={() => props.select(i)}       
+            pressed={() => props.select(i)}
+         
         />
         ));
     return <ScrollView style = {sty3.list}>{output}</ScrollView>
