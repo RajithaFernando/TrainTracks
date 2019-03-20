@@ -14,7 +14,7 @@ const list = props => {
         ));
     return <ScrollView style = {sty3.list}>{output}</ScrollView>
 };
-
+//
 const sty3 = StyleSheet.create({
     list:{
         width: "100%"

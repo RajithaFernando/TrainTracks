@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Image, Platform, StyleSheet, Text, View,TouchableOpacity} from 'react-native';
+import {Image, Platform, StyleSheet, Text, View,TouchableOpacity, Alert} from 'react-native';
 
 // import SearchInput from './src/components/SearchInput/SearchInput';
 // import List from './src/components/List/List';
@@ -9,6 +9,7 @@ import Listitem from './src/components/Listitem/Listitem'
 export default class App extends Component {
   state = {
     inputt:['Train 1', 'Train 2', 'Train 3'],
+    
     selectedTrain : null,
     trains : {
       train1:{
@@ -30,7 +31,7 @@ export default class App extends Component {
         key:3
       }
     },
-    inp :'xxx'
+    inp :false
   };
 
 
@@ -64,20 +65,29 @@ selectHandler= ()=>{
   this.setState(prevState=>{
     return{
       selectedTrain :prevState.trains.train1.key
+      
     }
   }
   )
   // alert(this.state.selectedTrain)  
   
 }
+buttonHandller = ()=>{
+  this.setState({
+    selectedTrain : null
+  })
+  
+  }
+
   render(){  
     // var leng = this.state.trains.train1.length();
     var code =[];
     for (let i=0; i <5; i++ ){
       code.push(
       <TouchableOpacity onPress = {this.selectHandler}>
+   
         <View style={styles.list} >
-            <Text>{this.state.trains.train1.name} Time :  {this.state.trains.train1.time}   Status :  {this.state.trains.train1.stat}   </Text>
+            <Text> no : {i +1} {this.state.trains.train1.name} Time :  {this.state.trains.train1.time}   Status :  {this.state.trains.train1.stat}   </Text>
         </View>
     </TouchableOpacity>
       )
@@ -86,8 +96,9 @@ selectHandler= ()=>{
     return (
       <View style={styles.container}>  
         
-        <Traindetails train = {this.state.selectedTrain} /> 
-          <Text style={styles.txt}>Sioasdas ass {this.state.selectedTrain}</Text>
+        <Traindetails train = {this.state.selectedTrain}  buttonHandller = {this.buttonHandller}/> 
+        
+          <Text style={styles.txt}>Train Tracks {this.state.selectedTrain}</Text>
           <View style={styles.list}>{code}</View>
           <Image source={require('./img/logo.png')} style={styles.img} />
           

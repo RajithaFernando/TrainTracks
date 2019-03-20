@@ -1,46 +1,48 @@
 import React from 'react';
-import {Modal, View, Image, Text, Button, StyleSheet} from 'react-native';
+import {Modal, View, Image, Text, Button, StyleSheet, Alert} from 'react-native';
 
-const traindetails = props => {   
+const traindetails = props => {  
+    
+    
     let contetn = null;
-    if (props.train){
+    if (props.train !== null){
         contetn = (
             <View>
                 <Text>{props.selectedTrain}</Text>
+                <Text>UDa balannaaaa</Text>
+                
             </View>
         )
     }
-    if (props.train === null){
+    if (props.train !== null){
         status = 0;
 
     }
-    // buttonHandller = (prevState)=>{
-    //     this.setState(prevState=>{
-    //        return{
-    //         selectedTrain:null
-    //        } 
-    //     })
-    // }
+   
+    let abc = false
+    
+    // alert (props.train)
     return(
+        
         <Modal 
-        visible={props.train === null}
+        visible={props.train !== null}
         animationType="slide"
-        onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-          }}>
+        
         >
             <View>
                 {/* <Image source={require('../../../img/logo.png')} style={styles.img}/> */}
-                <Text>Some TExt</Text>
+             
                 <View>{contetn}</View>
                 <View>
-                    <Button title = '< Back' type="outline"
-                  
-                    />
+                    <Button title = 'Back' type="outline" color = "black"
+                            onPress = {props.buttonHandller}
+                        />
                     <Button title = 'Location' type="outline"/>
                 </View>
+                
             </View>
         </Modal>
+        
     )  
 }
 
