@@ -34,6 +34,7 @@ class SearchInput extends Component {
                     style={sty2.button}
                     onPress={this.inputHandler }
                     title='Search'
+                  
                 />
             </View>
         )

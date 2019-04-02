@@ -18,7 +18,7 @@ const traindetails = props => {
         status = 0;
 
     }
-   
+
     let abc = false
     
     // alert (props.train)
@@ -34,7 +34,7 @@ const traindetails = props => {
              
                 <View>{contetn}</View>
                 <View>
-                    <Button title = 'Back' type="outline" color = "black"
+                    <Button title = 'Back' type="outline" color = "black" 
                             onPress = {props.buttonHandller}
                         />
                     <Button title = 'Location' type="outline"/>
