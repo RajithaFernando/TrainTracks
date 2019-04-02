@@ -9,7 +9,7 @@ import Traindetails from './src/components/Traindetails/Traindetails';
 // import Listitem from './src/components/Listitem/Listitem'
 
 import firebase from 'firebase';
-const firebase = require("firebase");
+// const firebase = require("firebase");
 
 const config = {
   apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
@@ -20,9 +20,32 @@ const config = {
   messagingSenderId: "316261499606"
 };
 firebase.initializeApp(config);
-const firestore = require("firebase/firestore");
-db = firebase.firestore();
-db.settings({ timestampsInSnapshots: true });
+
+var connectedRef = firebase.database().ref(".info/connected");
+connectedRef.on("value", function(snap) {
+  if (snap.val() === true) {
+    alert("connected");
+    console.log('Connected you Mother Fucker')
+  } else {
+    alert("not connected");
+    console.log('Not Connected you Dumb cunt')
+
+  }
+});
+var database = firebase.database();
+
+var userId = firebase.auth().currentUser.uid;
+return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+  // ...
+});
+
+console.log(userId);
+console.log(userId);
+console.log(username)
+// const firestore = require("firebase/firestore");
+// db = firebase.firestore();
+// db.settings({ timestampsInSnapshots: true });
 // firebase-auth()
 
 // type Props = {};
@@ -120,9 +143,9 @@ buttonHandller = ()=>{
       )
     }
     
-    // console.log(firebase)
+    console.log('firebase is :' +firebase)
     // console.log(this.state)
-    // console.log(firebase.app().name)
+    // console.log('firabase name is ' +firebase.app().name)
     console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
     // {state.trains.train1.name}
     
@@ -137,8 +160,8 @@ buttonHandller = ()=>{
           <Text style={styles.txt}>Train Tracks {this.state.selectedTrain}</Text>
           <View style={styles.list}>{code}
           <FlatList
-        style={styles.txt}
-        data={[{name: 'Rajitha'}, {name: 'Fernando'}]}
+        
+        data={[{name: 'Rajitha'}, {name: 'Fernando'},{name: 'Rajitha'}, {name: 'Fernando'}]}
         renderItem={({item}) => <Text>{item.name}</Text>}
       /> 
 
@@ -168,8 +191,8 @@ const styles = StyleSheet.create({
   },
   txt: {
     backgroundColor: '#141823',
-    fontWeight: 'bold',
-    fontSize: 30,
+    // fontWeight: 'bold',
+    // fontSize: 30,
     color:'white'
   },
   list:{
