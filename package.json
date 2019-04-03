@@ -10,6 +10,7 @@
     "firebase": "^5.9.2",
     "react": "16.6.3",
     "react-native": "^0.55.4",
+    "react-native-firebase": "^5.2.3",
     "react-redux": "^6.0.1",
     "redux": "^4.0.1"
   },

@@ -8,18 +8,29 @@ import {Image,FlatList, Platform, StyleSheet, Text, View,TouchableOpacity, Alert
 import Traindetails from './src/components/Traindetails/Traindetails';
 // import Listitem from './src/components/Listitem/Listitem'
 
-import firebase from 'firebase';
+import firebase from 'react-native-firebase';
+import '@firebase/firestore'
+
+
 // const firebase = require("firebase");
 
-const config = {
-  apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
-  authDomain: "shareplaces-5a4c6.firebaseapp.com",
-  databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
-  projectId: "shareplaces-5a4c6",
-  storageBucket: "shareplaces-5a4c6.appspot.com",
-  messagingSenderId: "316261499606"
-};
-firebase.initializeApp(config);
+// const config = {
+//   apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
+//   authDomain: "shareplaces-5a4c6.firebaseapp.com",
+//   databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
+//   projectId: "shareplaces-5a4c6",
+//   storageBucket: "shareplaces-5a4c6.appspot.com",
+//   messagingSenderId: "316261499606"
+// };
+// firebase.initializeApp(config);
+require('@firebase/database');
+
+// class App extends Component{
+  
+
+
+
+
 
 // var connectedRef = firebase.database().ref(".info/connected");
 // connectedRef.on("value", function(snap) {
@@ -32,7 +43,7 @@ firebase.initializeApp(config);
 
 //   }
 // });
-var database = firebase.database()
+
 
 
 // console.log(userId);
@@ -45,6 +56,45 @@ var database = firebase.database()
 
 // type Props = {};
 class App extends Component {
+
+
+  componentWillMount(){
+    firebase.initializeApp({
+        apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
+        authDomain: "shareplaces-5a4c6.firebaseapp.com",
+        databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
+        projectId: "shareplaces-5a4c6",
+        storageBucket: "shareplaces-5a4c6.appspot.com",
+        messagingSenderId: "316261499606"
+      });
+      const database = firebase.firestore()
+      // var citiesRef = db.collection('cities');
+      var trainsref = database.collection('trains')
+      var query = trainsref.where('running', '==', true).get()
+      .then(snapshot => {
+        if (snapshot.empty) {
+          console.log('No matching documents.');
+          return;
+        }
+
+        snapshot.forEach(doc => {
+          console.log(doc.id, '=>', doc.data());
+        });
+      })
+      .catch(err => {
+        console.log('Error getting documents', err);
+      });
+
+
+
+
+
+      // database.collection('trains').get().then()(function(snap){
+      //   console.log(snap.val());
+      // })
+  }
+
+
   state = {
     inputt:['Train 1', 'Train 2', 'Train 3'],
     
@@ -160,21 +210,8 @@ buttonHandller = ()=>{
     //   console.log('Errorrrr')
     // }
     
-    var firebasedataref =  firebase.database().ref('users').child('born')
-// trainname = 'somename'
+    
 
-componentDidMount() {
-  this.firebasedataref.on('value', (snapshot)=>{
-    // trainname=snapshot.val() 
-    // alert(trainname)
-    alert('that is ' +snapshot.val())
-  })
-}
-
-
-   
-// console.log(trainname)
-//     alert(trainname)
 
 
     return (
