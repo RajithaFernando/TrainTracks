@@ -21,28 +21,23 @@ const config = {
 };
 firebase.initializeApp(config);
 
-var connectedRef = firebase.database().ref(".info/connected");
-connectedRef.on("value", function(snap) {
-  if (snap.val() === true) {
-    alert("connected");
-    console.log('Connected you Mother Fucker')
-  } else {
-    alert("not connected");
-    console.log('Not Connected you Dumb cunt')
+// var connectedRef = firebase.database().ref(".info/connected");
+// connectedRef.on("value", function(snap) {
+//   if (snap.val() === true) {
+//     alert("connected");
+//     console.log('Connected you Mother Fucker')
+//   } else {
+//     alert("not connected");
+//     console.log('Not Connected you Dumb cunt')
 
-  }
-});
-var database = firebase.database();
+//   }
+// });
+var database = firebase.database()
 
-var userId = firebase.auth().currentUser.uid;
-return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-  var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
-  // ...
-});
 
-console.log(userId);
-console.log(userId);
-console.log(username)
+// console.log(userId);
+// console.log(userId);
+// console.log(username)
 // const firestore = require("firebase/firestore");
 // db = firebase.firestore();
 // db.settings({ timestampsInSnapshots: true });
@@ -143,12 +138,43 @@ buttonHandller = ()=>{
       )
     }
     
-    console.log('firebase is :' +firebase)
+    // console.log('firebase is :' +firebase)
     // console.log(this.state)
     // console.log('firabase name is ' +firebase.app().name)
     console.log('RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR')
     // {state.trains.train1.name}
+    // var ref = database.ref('trains')
+
+    // ref.on('value', gotData , errData)
+    // function gotData (data){
+    //   // console.log(data.val())
+    //   // console.log('Got your data')
+    //   var trainlist = data.val()
+    //   var keys = Object.keys(trainlist)
+    //   console.log(keys)
+      
+
+    // }
+    // function errData (err){
+    //   console.log(err)
+    //   console.log('Errorrrr')
+    // }
     
+    var firebasedataref =  firebase.database().ref('users').child('born')
+// trainname = 'somename'
+
+componentDidMount() {
+  this.firebasedataref.on('value', (snapshot)=>{
+    // trainname=snapshot.val() 
+    // alert(trainname)
+    alert('that is ' +snapshot.val())
+  })
+}
+
+
+   
+// console.log(trainname)
+//     alert(trainname)
 
 
     return (
@@ -191,8 +217,8 @@ const styles = StyleSheet.create({
   },
   txt: {
     backgroundColor: '#141823',
-    // fontWeight: 'bold',
-    // fontSize: 30,
+    fontWeight: 'bold',
+    fontSize: 30,
     color:'white'
   },
   list:{
