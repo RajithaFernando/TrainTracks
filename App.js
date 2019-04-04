@@ -8,9 +8,11 @@ import {Image,FlatList, Platform, StyleSheet, Text, View,TouchableOpacity, Alert
 import Traindetails from './src/components/Traindetails/Traindetails';
 // import Listitem from './src/components/Listitem/Listitem'
 
-import firebase from 'react-native-firebase';
-import '@firebase/firestore'
-
+// import firebase from 'react-native-firebase';
+import firebase from '@firebase/app';
+require('firebase/auth');
+require('@firebase/database');
+require("firebase/firestore");
 
 // const firebase = require("firebase");
 
@@ -23,7 +25,7 @@ import '@firebase/firestore'
 //   messagingSenderId: "316261499606"
 // };
 // firebase.initializeApp(config);
-require('@firebase/database');
+
 
 // class App extends Component{
   
@@ -70,7 +72,7 @@ class App extends Component {
       const database = firebase.firestore()
       // var citiesRef = db.collection('cities');
       var trainsref = database.collection('trains')
-      var query = trainsref.where('running', '==', true).get()
+      var query = trainsref.get()
       .then(snapshot => {
         if (snapshot.empty) {
           console.log('No matching documents.');
