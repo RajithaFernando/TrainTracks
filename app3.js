@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, View, Text } from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
 
+import Locationpage from './locationpage';
+
 class HomeScreen extends React.Component {
   render() {
     return (
@@ -16,27 +18,7 @@ class HomeScreen extends React.Component {
   }
 }
 
-class DetailsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Details Screen</Text>
-        <Button
-          title="Go to Details... again"
-          onPress={() => this.props.navigation.push('Details')}
-        />
-        <Button
-          title="Go to Home"
-          onPress={() => this.props.navigation.navigate('Home')}
-        />
-        <Button
-          title="Go back"
-          onPress={() => this.props.navigation.goBack()}
-        />
-      </View>
-    );
-  }
-}
+<Locationpage></Locationpage>
 
 const RootStack = createStackNavigator(
   {
@@ -44,7 +26,7 @@ const RootStack = createStackNavigator(
       screen: HomeScreen,
     },
     Details: {
-      screen: DetailsScreen,
+      screen: Locationpage,
     },
   },
   {
