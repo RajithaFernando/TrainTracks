@@ -20,7 +20,7 @@
 
 // ///////////////////////////////////////////////////////////////////////
 
-import React from 'react;'
+// import React from 'react;'
 import {AppRegistry} from 'react-native';
 
 import App2 from './app2';
