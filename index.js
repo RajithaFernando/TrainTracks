@@ -21,9 +21,18 @@
 // ///////////////////////////////////////////////////////////////////////
 
 // import React from 'react;'
+// import {AppRegistry} from 'react-native';
+
+// import App2 from './app2';
+// import {name as appName} from './app.json';
+
+// AppRegistry.registerComponent(appName, () => App2);
+
+
+// /////////////////////////////////////////////
 import {AppRegistry} from 'react-native';
 
-import App2 from './app2';
+import App3 from './app3';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App2);
+AppRegistry.registerComponent(appName, () => App3);

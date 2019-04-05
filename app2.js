@@ -48,7 +48,7 @@ class App extends Component {
           this.setState(prevState => ({
             code: [...prevState.code.concat( 
             <TouchableOpacity onPress = {this.selectHandler}>
-              <View><Text>{doc.data().name} </Text></View>
+              <View style={styles.list}><Text>{doc.data().name} </Text></View>
               </TouchableOpacity>)    ]
             
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     width:'100%',
     padding:10,
     backgroundColor:'#eee',
-    // margin:5,
+    margin:5,
     marginLeft:10,
     marginRight:10,
     // marginTop:5,
