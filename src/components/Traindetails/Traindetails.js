@@ -20,7 +20,7 @@ const traindetails = props => {
     }
 
     let abc = false
-    
+    // 
     // alert (props.train)
     return(
         

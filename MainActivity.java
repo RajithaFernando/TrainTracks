@@ -3,6 +3,8 @@ import com.facebook.react.ReactActivity;
 + import com.facebook.react.ReactRootView;
 + import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
 
+
+import com.airbnb.android.react.maps.MapsPackage; // this added by me
 public class MainActivity extends ReactActivity {
 
   @Override
@@ -19,4 +21,15 @@ public class MainActivity extends ReactActivity {
 +      }
 +    };
 +  }
+
+@Override
+    protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+                new MainReactPackage(),
+                new MapsPackage()
+        );
+    }
 }
+
+
+    

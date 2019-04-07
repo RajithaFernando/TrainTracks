@@ -1,10 +1,68 @@
 import React, {Component} from 'react';
 import {Image,FlatList, Platform, StyleSheet, Text, View,TouchableOpacity, Alert} from 'react-native';
 
+import RNLocation from 'react-native-location';
+
 import firebase from '@firebase/app';
 require('firebase/auth');
 require('@firebase/database');
 require("firebase/firestore");
+
+
+RNLocation.configure({
+  distanceFilter: 5.0,
+  desiredAccuracy: {
+    ios: "best",
+    android: "balancedPowerAccuracy"
+  },
+  // Android only
+  androidProvider: "auto",
+  interval: 5000, // Milliseconds
+  fastestInterval: 10000, // Milliseconds
+  maxWaitTime: 5000, // Milliseconds
+})
+ 
+RNLocation.requestPermission({
+  ios: "whenInUse",
+  android: {
+    detail: 'coarse', // or 'fine'
+    rationale: {
+      title: "We need to access your location",
+      message: "We use your location to show where you are on the map",
+      buttonPositive: "OK",
+      buttonNegative: "Cancel"
+    }
+  }
+}).then(granted => {
+    if (granted) {
+      this.locationSubscription = RNLocation.subscribeToLocationUpdates(locations => {
+        console.log(locations)
+        console.log('FUUUUU')
+        /* Example location returned
+        {
+          speed: -1,
+          longitude: -0.1337,
+          latitude: 51.50998,
+          accuracy: 5,
+          heading: -1,
+          altitude: 0,
+          altitudeAccuracy: -1
+          floor: 0
+          timestamp: 1446007304457.029
+        }
+        */
+      })
+    }
+  })
+  RNLocation.getLatestLocation({ timeout: 60000 })
+  .then(latestLocation => {
+    // Use the location here
+    // console.log(location)
+    // console.log(latestLocation)
+  })
+
+
+
 
 
 class App extends Component {
