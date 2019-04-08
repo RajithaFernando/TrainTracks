@@ -10,7 +10,7 @@ export default class App4 extends React.Component {
             error: null
         }
     }
-    componentDidMount(){
+    componentWillMount(){
         let geoOptions = {
             enableHighAccuracy: true,
             timeOut: 20000,
