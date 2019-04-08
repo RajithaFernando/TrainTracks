@@ -18,6 +18,7 @@ const traindetails = props => {
         status = 0;
 
     }
+    
 
     let abc = false
     // 
