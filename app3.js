@@ -48,7 +48,7 @@ class HomeScreen extends React.Component {
         }
         snapshot.docs.forEach(doc => {
           
-          alert(doc.data().name)
+          // alert(doc.data().name)
 
 
           this.setState(prevState => ({

@@ -1,0 +1,4 @@
+#Mon Apr 08 15:55:55 IST 2019
+base.0=/home/rajitha/TrainTracks/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -134,16 +134,19 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-firebase')
+    compile project(':react-native-maps')
     compile project(':react-native-location')
     compile project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(':react-native-maps') // added by me
+    
+    // implementation project(':react-native-maps') // added by me
 
-    // Also added by me, starting from hear
-    implementation "com.google.android.gms:play-services-base:16.0.1"
-    implementation "com.google.android.gms:play-services-location:16.0.0"
+    //  // Also added by me, starting from hear
+    // implementation "com.google.android.gms:play-services-base:16.0.1"
+    // implementation "com.google.android.gms:play-services-location:16.0.0"
 
 //     implementation(project(':react-native-maps')){
 //        exclude group: 'com.google.android.gms', module: 'play-services-base'
