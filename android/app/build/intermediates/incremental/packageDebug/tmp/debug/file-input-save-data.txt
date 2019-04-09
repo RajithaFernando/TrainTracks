@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sun Apr 07 13:36:16 IST 2019
+#Mon Apr 08 19:42:39 IST 2019
 17.baseType=DIRECTORY
 4.path=ula.kml
 25.base=/home/rajitha/TrainTracks/android/app/build/intermediates/transforms/mergeJniLibs/debug/0

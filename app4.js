@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
   <MapView
     initialRegion={{
       latitude: 37.78825,
@@ -74,12 +74,18 @@ export default class App4 extends React.Component {
 }
 
 const styles = StyleSheet.create({
+    
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center'
+      ...StyleSheet.absoluteFillObject,
+      height: 400,
+      width: 400,
+      justifyContent: 'flex-end',
+      alignItems: 'center',
     },
+    map: {
+      ...StyleSheet.absoluteFillObject,
+    },
+       
     big: {
         fontSize: 48
     }
