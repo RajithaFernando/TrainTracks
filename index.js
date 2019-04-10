@@ -30,19 +30,19 @@
 
 
 // /////////////////////////////////////////////
-import {AppRegistry} from 'react-native';
+// import {AppRegistry} from 'react-native';
 
-import App3 from './app3';
-import {name as appName} from './app.json';
+// import App3 from './app3';
+// import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App3);
+// AppRegistry.registerComponent(appName, () => App3);
 
 
 
 // ///////////////////////////////////////
-// import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native';
 
-// import App4 from './app4';
-// import {name as appName} from './app.json';
+import App4 from './app4';
+import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent(appName, () => App4);
+AppRegistry.registerComponent(appName, () => App4);

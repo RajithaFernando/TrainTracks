@@ -1,25 +1,30 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from "react";
+import { StyleSheet, Text, View ,Dimensions} from 'react-native';
 
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-  <MapView
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  />
+// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView from 'react-native-maps';
   
-export default class App4 extends React.Component {
+  
+export default class App4 extends Component {
     constructor(){
         super();
         this.state = {
             ready: false,
             where: {lat:null, lng:null},
-            error: null
+            error: null,
+            loc :{
+                latitude: 7.093546,
+                longitude: 79.993703,
+                latitudeDelta: 0.0122,
+                longitudeDelta:
+                    Dimensions.get("window").width /
+                    Dimensions.get("window").height *
+                    0.0122
+                }
+                
         }
     }
+    // 
     componentWillMount(){
         let geoOptions = {
             enableHighAccuracy: true,
@@ -30,44 +35,42 @@ export default class App4 extends React.Component {
         navigator.geolocation.getCurrentPosition( this.geoSuccess, 
                                                 this.geoFailure,
                                                 geoOptions);
-    }
-    geoSuccess = (position) => {
-        console.log(position.coords.latitude);
-        console.log(position)
-        
-        this.setState({
-            ready:true,
-            where: {lat: position.coords.latitude,lng:position.coords.longitude }
-        })
-    }
-    geoFailure = (err) => {
-        this.setState({error: err.message});
-    }
+        }
+        geoSuccess = (position) => {
+            console.log(position.coords.latitude);
+            console.log(position)
+            alert('Lat ' + position.coords.latitude)
+            alert('long' + position.coords.longitude )
+            // this.setState({loc:{latitude:position.coords.latitude,
+            //                     longitude:position.coords.longitude}
+            //                 })
+            
+            this.setState({
+                ready:true,
+                where: {lat: position.coords.latitude,lng:position.coords.longitude }
+            })
+
+            // hear update query
+
+
+
+        }
+        geoFailure = (err) => {
+            this.setState({error: err.message});
+            alert (err.message)
+        }
     render() {
         return (
             <View style={styles.container}>
-                { !this.state.ready && (
-                <Text style={styles.big}>Using Geolocation in React Native.</Text>
-                )}
-                { this.state.error && (
-                <Text style={styles.big}>{this.state.error}</Text>
-                )}
-                { this.state.ready && (
-                    <Text style={styles.big}>{
-                    `Latitude: ${this.state.where.lat}
-                    Longitude: ${this.state.where.lng}`
-                    }</Text>
-                )}
-                <View>
+                
                 <MapView
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  />
-                </View>
+                initialRegion={this.state.loc}
+                region={this.state.loc}
+                style={styles.map}
+                >
+                </MapView>
+                
+              
             </View>
         );
     }
@@ -76,14 +79,15 @@ export default class App4 extends React.Component {
 const styles = StyleSheet.create({
     
     container: {
-      ...StyleSheet.absoluteFillObject,
-      height: 400,
-      width: 400,
-      justifyContent: 'flex-end',
+    //   ...StyleSheet.absoluteFillObject,
+        height: '100%',
+      width: '100%',
+    //   justifyContent: 'flex-end',
       alignItems: 'center',
     },
     map: {
-      ...StyleSheet.absoluteFillObject,
+      width:'100%',
+      height:'50%'
     },
        
     big: {

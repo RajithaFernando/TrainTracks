@@ -13,7 +13,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 
-import com.airbnb.android.react.maps.MapsPackage;
+// import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +34,7 @@ public class MainApplication extends Application implements ReactApplication {
             new MapsPackage(),
             new RNLocationPackage(),
             new RNGestureHandlerPackage()
+            
       );
     }
 
