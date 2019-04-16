@@ -89,14 +89,6 @@ uses-permission#android.permission.ACCESS_FINE_LOCATION
 ADDED from /home/rajitha/TrainTracks/android/app/src/main/AndroidManifest.xml:6:5-79
 	android:name
 		ADDED from /home/rajitha/TrainTracks/android/app/src/main/AndroidManifest.xml:6:22-76
-uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /home/rajitha/TrainTracks/android/app/src/main/AndroidManifest.xml:7:5-80
-MERGED from [:react-native-location] /home/rajitha/TrainTracks/node_modules/react-native-location/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:5-81
-MERGED from [:react-native-location] /home/rajitha/TrainTracks/node_modules/react-native-location/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:5-81
-MERGED from [:react-native-maps] /home/rajitha/TrainTracks/node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:10:5-81
-MERGED from [:react-native-maps] /home/rajitha/TrainTracks/node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:10:5-81
-	android:name
-		ADDED from /home/rajitha/TrainTracks/android/app/src/main/AndroidManifest.xml:7:22-78
 application
 ADDED from /home/rajitha/TrainTracks/android/app/src/main/AndroidManifest.xml:10:5-34:19
 MERGED from [com.facebook.react:react-native:0.55.4] /root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/AndroidManifest.xml:13:5-20
@@ -281,6 +273,12 @@ MERGED from [com.google.android.gms:play-services-maps:10.0.1] /root/.gradle/cac
 MERGED from [com.google.android.gms:play-services-maps:10.0.1] /root/.gradle/caches/transforms-1/files-1.1/play-services-maps-10.0.1.aar/739fbd1589b36e1b63cf09c8fc8344b8/AndroidManifest.xml:19:5-78
 	android:name
 		ADDED from [:react-native-firebase] /home/rajitha/TrainTracks/node_modules/react-native-firebase/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:13:22-76
+uses-permission#android.permission.ACCESS_COARSE_LOCATION
+ADDED from [:react-native-location] /home/rajitha/TrainTracks/node_modules/react-native-location/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:5-81
+MERGED from [:react-native-maps] /home/rajitha/TrainTracks/node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:10:5-81
+MERGED from [:react-native-maps] /home/rajitha/TrainTracks/node_modules/react-native-maps/lib/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:10:5-81
+	android:name
+		ADDED from [:react-native-location] /home/rajitha/TrainTracks/node_modules/react-native-location/android/build/intermediates/merged_manifests/debug/processDebugManifest/merged/AndroidManifest.xml:9:22-78
 uses-feature#0x00020000
 ADDED from [com.google.android.gms:play-services-maps:10.0.1] /root/.gradle/caches/transforms-1/files-1.1/play-services-maps-10.0.1.aar/739fbd1589b36e1b63cf09c8fc8344b8/AndroidManifest.xml:21:5-77
 	android:glEsVersion
