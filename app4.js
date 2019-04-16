@@ -89,8 +89,15 @@ export default class App4 extends Component {
                 */
                let lat = locations[0].latitude;
                let lon = locations[0].longitude;
-               this.setState({ lat: lat, lon: lon });
-               writefun() 
+               this.setState({  lat: lat, lon: lon });
+                                
+               if (this.state.lat !== null){
+                writefun()
+               }
+               else{
+                 alert('state is null')
+               }
+                
                 })
               }
               else{
@@ -111,9 +118,11 @@ export default class App4 extends Component {
               var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
             
               function writefun () {
+                lat2 = String(this.state.lat)
+                lon2 = String(this.state.lon)
                 reference.set({
-                lat: String(this.state.lat),
-                lng:String(this.state.lon) 
+                lat: lat2,
+                lng: lon2 
                   
                 //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
                 }).then(()=>{
