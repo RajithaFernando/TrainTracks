@@ -1,31 +1,31 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @providesModule MultitouchHandlingTestAppModule
+ * @format
  */
 
 'use strict';
 
-var React = require('React');
-var Recording = require('NativeModules').Recording;
-var StyleSheet = require('StyleSheet');
-var TouchEventUtils = require('fbjs/lib/TouchEventUtils');
-var View = require('View');
+const React = require('React');
+const Recording = require('NativeModules').Recording;
+const StyleSheet = require('StyleSheet');
+const TouchEventUtils = require('fbjs/lib/TouchEventUtils');
+const View = require('View');
 
 class TouchTestApp extends React.Component {
-  handleStartShouldSetResponder = (e) => {
+  handleStartShouldSetResponder = e => {
     return true;
   };
 
-  handleOnResponderMove = (e) => {
+  handleOnResponderMove = e => {
     e = TouchEventUtils.extractSingleTouch(e.nativeEvent);
     Recording.record('move;' + e.touches.length);
   };
 
-  handleResponderStart = (e) => {
+  handleResponderStart = e => {
     e = TouchEventUtils.extractSingleTouch(e.nativeEvent);
     if (e.touches) {
       Recording.record('start;' + e.touches.length);
@@ -34,7 +34,7 @@ class TouchTestApp extends React.Component {
     }
   };
 
-  handleResponderEnd = (e) => {
+  handleResponderEnd = e => {
     e = TouchEventUtils.extractSingleTouch(e.nativeEvent);
     if (e.touches) {
       Recording.record('end;' + e.touches.length);
@@ -57,7 +57,7 @@ class TouchTestApp extends React.Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },

@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View ,Dimensions} from 'react-native';
+import { StyleSheet, Text, View ,Dimensions, Button} from 'react-native';
 
-// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import MapView from 'react-native-maps';
-
+import { Marker } from 'react-native-maps';
 
 import RNLocation from 'react-native-location';
 
@@ -11,24 +10,13 @@ import firebase from '@firebase/app';
 require('firebase/auth');
 require('@firebase/database');
 require("firebase/firestore");
-// import Geolocation from 'react-native-geolocation-service';
-
-
-//   RNLocation.checkPermission({
-//     ios: 'whenInUse', // or 'always'
-//     android: {
-//       detail: 'coarse' // or 'fine'
-//     }
-//   });
-
   
 export default class App4 extends Component {
     constructor(){
         super();
         this.state = {
             ready: false,
-            where: {lat:null, lng:null},
-            error: null,
+            message:'Plese update Location',
             lat: null,
             lon: null,
             loc :{
@@ -39,18 +27,10 @@ export default class App4 extends Component {
                     Dimensions.get("window").width /
                     Dimensions.get("window").height *
                     0.0122
-                },
-                
+                },        
         }
     }
-    //\
     
-    
-    
-        
-
-    
-
     componentDidMount(){
         
       RNLocation.configure({
@@ -74,30 +54,10 @@ export default class App4 extends Component {
           }).then(granted => {
             if (granted) {
               this.locationSubscription = RNLocation.subscribeToLocationUpdates(locations => {
-                /* Example location returned
-                {
-                  speed: -1,
-                  longitude: -0.1337,
-                  latitude: 51.50998,
-                  accuracy: 5,
-                  heading: -1,
-                  altitude: 0,
-                  altitudeAccuracy: -1
-                  floor: 0
-                  timestamp: 1446007304457.029
-                }
-                */
-               let lat = locations[0].latitude;
-               let lon = locations[0].longitude;
-               this.setState({  lat: lat, lon: lon });
-                                
-               if (this.state.lat !== null){
-                writefun()
-               }
-               else{
-                 alert('state is null')
-               }
                 
+               var lat = locations[0].latitude;
+               var lon = locations[0].longitude;
+               this.setState({  lat: lat, lon: lon , message:'Location Updated'});
                 })
               }
               else{
@@ -117,36 +77,60 @@ export default class App4 extends Component {
               
               var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
             
-              function writefun () {
-                lat2 = String(this.state.lat)
-                lon2 = String(this.state.lon)
+              writefun = (lat1, lon1)=> {   
+                alert('came hear without pressing')
                 reference.set({
-                lat: lat2,
-                lng: lon2 
-                  
-                //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-                }).then(()=>{
-                        // alert('Firebase success')
+                  lat: lat1,
+                  lng: lon1, 
+                }
+                ).then(()=>{
+                  this.setState({ message:'Location Updated'});
                     }).catch(function(error) {
                   alert('Error writing new message to Firebase Database');
+                  this.setState({  message:'Location Not Updated'});
                 });
-              }
-                    
+              }     
+              
+              
+              var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+              var query = trainsref.get().then(function(doc) {
+                
+                if (doc.exists) {
+                  alert('Firebase Success'+doc.data().lat);
+                  
+                }
+                else{
+                  alert('document dosent exists')
+                }
+              })
+              .catch(err => {
+                alert('Error getting documents');
+              });
           }
-
-
-
+       
     render() {
         return (
             <View style={styles.container}>
                 
                 <MapView
-                initialRegion={this.state.loc}
-                region={this.state.loc}
-                style={styles.map}
+                    initialRegion={this.state.loc}
+                    region={this.state.loc}
+                    style={styles.map}
+                    
+                    annotations={this.markers}
                 >
+                <Marker coordinate={{
+                  latitude: 7.093546,
+                  longitude: 79.993703,}} >
+                </Marker>
                 </MapView>
-                <Text>{}</Text>
+                <View>
+                <Button
+                  title="Update Location"
+                  onPress={() => writefun(this.state.lat, this.state.lon)}
+                />
+                <Text>{this.state.message}</Text>
+                </View>
               
             </View>
         );

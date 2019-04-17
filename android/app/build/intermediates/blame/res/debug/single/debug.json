@@ -145,7 +145,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_push_up_in.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_push_up_in.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_push_up_in.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_common_google_signin_btn_icon_light_disabled.9.png.flat",
@@ -229,7 +229,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_redbox_item_frame.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/layout/redbox_item_frame.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/layout/redbox_item_frame.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
@@ -425,7 +425,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_fps_view.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/layout/fps_view.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/layout/fps_view.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-xxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
@@ -757,7 +757,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_fade_in.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_fade_in.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_fade_in.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-xhdpi-v4_common_google_signin_btn_icon_light_normal.9.png.flat",
@@ -766,6 +766,10 @@
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/raw_amu_unsupported.kml.flat",
         "source": "/root/.gradle/caches/transforms-1/files-1.1/android-maps-utils-0.5.aar/97f50517ccc3818e815a508bb7738e18/res/raw/amu_unsupported.kml"
+    },
+    {
+        "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable_redbox_top_border_background.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/drawable/redbox_top_border_background.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_abc_list_menu_item_layout.xml.flat",
@@ -1297,7 +1301,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_fade_out.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_fade_out.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_fade_out.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-ldrtl-hdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -1357,7 +1361,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_dev_loading_view.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/layout/dev_loading_view.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/layout/dev_loading_view.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
@@ -1433,7 +1437,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_redbox_item_title.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/layout/redbox_item_title.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/layout/redbox_item_title.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/color_common_google_signin_btn_text_dark.xml.flat",
@@ -1553,7 +1557,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_slide_up.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_slide_up.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_slide_up.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable_abc_ratingbar_small_material.xml.flat",
@@ -1653,7 +1657,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_redbox_view.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/layout/redbox_view.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/layout/redbox_view.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/color-v23_abc_color_highlight_material.xml.flat",
@@ -1661,7 +1665,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_push_up_out.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_push_up_out.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_push_up_out.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -1821,7 +1825,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/xml_preferences.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/xml/preferences.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/xml/preferences.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/layout_notification_media_cancel_action.xml.flat",
@@ -1957,7 +1961,7 @@
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/anim_catalyst_slide_down.xml.flat",
-        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.55.4.aar/054d5c94060e8694fd74adc112ec0d3f/res/anim/catalyst_slide_down.xml"
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/react-native-0.58.6.aar/f9c3fd9c373ba472e1f1f8f3e18fc914/res/anim/catalyst_slide_down.xml"
     },
     {
         "merged": "/home/rajitha/TrainTracks/android/app/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",

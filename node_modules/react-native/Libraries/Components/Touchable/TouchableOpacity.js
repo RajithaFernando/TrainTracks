@@ -1,22 +1,20 @@
 /**
- * Copyright (c) 2015-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @providesModule TouchableOpacity
- * @noflow
+ * @format
+ * @flow
  */
-'use strict';
 
-// Note (avik): add @flow when Flow supports spread properties in propTypes
+'use strict';
 
 const Animated = require('Animated');
 const Easing = require('Easing');
 const NativeMethodsMixin = require('NativeMethodsMixin');
 const React = require('React');
 const PropTypes = require('prop-types');
-const TimerMixin = require('react-timer-mixin');
 const Touchable = require('Touchable');
 const TouchableWithoutFeedback = require('TouchableWithoutFeedback');
 
@@ -24,9 +22,24 @@ const createReactClass = require('create-react-class');
 const ensurePositiveDelayProps = require('ensurePositiveDelayProps');
 const flattenStyle = require('flattenStyle');
 
-type Event = Object;
+import type {Props as TouchableWithoutFeedbackProps} from 'TouchableWithoutFeedback';
+import type {ViewStyleProp} from 'StyleSheet';
+import type {TVParallaxPropertiesType} from 'TVViewPropTypes';
+import type {PressEvent} from 'CoreEventTypes';
 
 const PRESS_RETENTION_OFFSET = {top: 20, left: 20, right: 20, bottom: 30};
+
+type TVProps = $ReadOnly<{|
+  hasTVPreferredFocus?: ?boolean,
+  tvParallaxProperties?: ?TVParallaxPropertiesType,
+|}>;
+
+type Props = $ReadOnly<{|
+  ...TouchableWithoutFeedbackProps,
+  ...TVProps,
+  activeOpacity?: ?number,
+  style?: ?ViewStyleProp,
+|}>;
 
 /**
  * A wrapper for making views respond properly to touches.
@@ -116,9 +129,9 @@ const PRESS_RETENTION_OFFSET = {top: 20, left: 20, right: 20, bottom: 30};
  * ```
  *
  */
-const TouchableOpacity = createReactClass({
+const TouchableOpacity = ((createReactClass({
   displayName: 'TouchableOpacity',
-  mixins: [TimerMixin, Touchable.Mixin, NativeMethodsMixin],
+  mixins: [Touchable.Mixin, NativeMethodsMixin],
 
   propTypes: {
     ...TouchableWithoutFeedback.propTypes,
@@ -168,22 +181,19 @@ const TouchableOpacity = createReactClass({
    * Animate the touchable to a new opacity.
    */
   setOpacityTo: function(value: number, duration: number) {
-    Animated.timing(
-      this.state.anim,
-      {
-        toValue: value,
-        duration: duration,
-        easing: Easing.inOut(Easing.quad),
-        useNativeDriver: true,
-      }
-    ).start();
+    Animated.timing(this.state.anim, {
+      toValue: value,
+      duration: duration,
+      easing: Easing.inOut(Easing.quad),
+      useNativeDriver: true,
+    }).start();
   },
 
   /**
    * `Touchable.Mixin` self callbacks. The mixin will invoke these if they are
    * defined on your component.
    */
-  touchableHandleActivePressIn: function(e: Event) {
+  touchableHandleActivePressIn: function(e: PressEvent) {
     if (e.dispatchConfig.registrationName === 'onResponderGrant') {
       this._opacityActive(0);
     } else {
@@ -192,16 +202,16 @@ const TouchableOpacity = createReactClass({
     this.props.onPressIn && this.props.onPressIn(e);
   },
 
-  touchableHandleActivePressOut: function(e: Event) {
+  touchableHandleActivePressOut: function(e: PressEvent) {
     this._opacityInactive(250);
     this.props.onPressOut && this.props.onPressOut(e);
   },
 
-  touchableHandlePress: function(e: Event) {
+  touchableHandlePress: function(e: PressEvent) {
     this.props.onPress && this.props.onPress(e);
   },
 
-  touchableHandleLongPress: function(e: Event) {
+  touchableHandleLongPress: function(e: PressEvent) {
     this.props.onLongPress && this.props.onLongPress(e);
   },
 
@@ -218,8 +228,9 @@ const TouchableOpacity = createReactClass({
   },
 
   touchableGetLongPressDelayMS: function() {
-    return this.props.delayLongPress === 0 ? 0 :
-      this.props.delayLongPress || 500;
+    return this.props.delayLongPress === 0
+      ? 0
+      : this.props.delayLongPress || 500;
   },
 
   touchableGetPressOutDelayMS: function() {
@@ -231,24 +242,22 @@ const TouchableOpacity = createReactClass({
   },
 
   _opacityInactive: function(duration: number) {
-    this.setOpacityTo(
-      this._getChildStyleOpacityWithDefault(),
-      duration
-    );
+    this.setOpacityTo(this._getChildStyleOpacityWithDefault(), duration);
   },
 
   _getChildStyleOpacityWithDefault: function() {
-   const childStyle = flattenStyle(this.props.style) || {};
-   return childStyle.opacity == undefined ? 1 : childStyle.opacity;
- },
+    const childStyle = flattenStyle(this.props.style) || {};
+    return childStyle.opacity == null ? 1 : childStyle.opacity;
+  },
 
   render: function() {
     return (
       <Animated.View
         accessible={this.props.accessible !== false}
         accessibilityLabel={this.props.accessibilityLabel}
-        accessibilityComponentType={this.props.accessibilityComponentType}
-        accessibilityTraits={this.props.accessibilityTraits}
+        accessibilityHint={this.props.accessibilityHint}
+        accessibilityRole={this.props.accessibilityRole}
+        accessibilityStates={this.props.accessibilityStates}
         style={[this.props.style, {opacity: this.state.anim}]}
         nativeID={this.props.nativeID}
         testID={this.props.testID}
@@ -258,16 +267,21 @@ const TouchableOpacity = createReactClass({
         tvParallaxProperties={this.props.tvParallaxProperties}
         hitSlop={this.props.hitSlop}
         onStartShouldSetResponder={this.touchableHandleStartShouldSetResponder}
-        onResponderTerminationRequest={this.touchableHandleResponderTerminationRequest}
+        onResponderTerminationRequest={
+          this.touchableHandleResponderTerminationRequest
+        }
         onResponderGrant={this.touchableHandleResponderGrant}
         onResponderMove={this.touchableHandleResponderMove}
         onResponderRelease={this.touchableHandleResponderRelease}
         onResponderTerminate={this.touchableHandleResponderTerminate}>
         {this.props.children}
-        {Touchable.renderDebugView({color: 'cyan', hitSlop: this.props.hitSlop})}
+        {Touchable.renderDebugView({
+          color: 'cyan',
+          hitSlop: this.props.hitSlop,
+        })}
       </Animated.View>
     );
   },
-});
+}): any): React.ComponentType<Props>);
 
 module.exports = TouchableOpacity;
