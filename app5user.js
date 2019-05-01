@@ -16,8 +16,8 @@ export default class App5user extends Component {
     constructor(){
         super();
         this.state = {
-            lat:"",
-            lon:"",
+            lat:null,
+            lon:null,
             message:"",
             stations:"",   
             lats:[],
@@ -45,55 +45,34 @@ export default class App5user extends Component {
             messagingSenderId: "316261499606"
           });
           
-        const database = firebase.firestore()
-        var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
-        var stationsref = database.collection('stations')
-
         
-        var query = stationsref.get().then(snapshot => {
-            if (snapshot.empty) {
-                alert('No Data Avilable. Cheack Your Connection.')
-                return;
-            }
-            snapshot.docs.forEach(doc => {  
-                stations.push(doc.data().name)
-                lats.push(doc.data().lat)
-                lons.push(doc.data().lon)
-
-                code.concat(
-                    <Marker coordinate={{
-                        latitude: doc.data().lat,
-                        longitude: doc.data().lon,}}
-                        image={require('./img/icon.png')} >
-                    </Marker>
-                )
-            })           
-            }).then(()=>{
-                this.setState({
-                    stations:stations,
-                    lats:lats,
-                    lons:lons,},function(){
-                })    
-            }).catch(err => {
-                console.log('Error getting documents', err);
-            });
     }
     componentDidMount(){
-
+        const database = firebase.firestore()
+        var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+        
+        setInterval(  
+        getdata =()=>{ trainsref.get().then(function(doc) {    
+            if (doc.exists) {
+                var lat = doc.data().lat
+                var lon = doc.data().lon
+                alert(lat)
+                fun =(lat, lon) => this.setState({
+                    lat :lat,
+                    lon:lon
+                    })
+                }
+            else{
+                // alert('Sorry ! Data Not Available')
+                }
+            }).catch(err => {
+                // alert('Error getting Data. Check your Connection and try Again');
+                });
+            }, 10000)
+        
     }
     
     render(){
-        // codes = []
-        // noOfStations = this.state.stations.length;
-        // for (let i=0; i <noOfStations; i++ ){
-        //     codes=(
-        //         <Marker coordinate={{
-        //             latitude: this.state.lats[2],
-        //             longitude: this.state.lons[]}}
-        //             image={require('./img/icon.png')} >
-        //         </Marker>
-        //     )
-        // }
         return(
             <View style={styles.container}> 
                 <MapView
@@ -107,6 +86,7 @@ export default class App5user extends Component {
                     image={require('./img/icon.png')} >
                 </Marker>}
                 </MapView>
+                <Text>{this.state.lat} isis</Text>
             </View>
         )
     }
