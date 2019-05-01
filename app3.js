@@ -3,7 +3,7 @@ import { Button, View, Text,TouchableOpacity,StyleSheet ,ActivityIndicator} from
 import { createAppContainer, createStackNavigator } from 'react-navigation'; // Version can be specified in package.json
 
 import Locationpage from './locationpage';
-import App4 from './app4';
+import App5 from './app5';
 
 import firebase from '@firebase/app';
 require('firebase/auth');
@@ -28,6 +28,9 @@ class HomeScreen extends React.Component {
       }
       
   componentWillMount(){
+
+
+    
     firebase.initializeApp({
         apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
         authDomain: "shareplaces-5a4c6.firebaseapp.com",
@@ -54,7 +57,7 @@ class HomeScreen extends React.Component {
           this.setState(prevState => ({
             animation:false,
             code: [...prevState.code.concat( 
-            <TouchableOpacity onPress = {() => this.props.navigation.navigate('App4')}>
+            <TouchableOpacity onPress = {() => this.props.navigation.navigate('App5')}>
               <View style={styles.list}><Text >{doc.data().name}  </Text></View>
             </TouchableOpacity>)    ] 
           }
@@ -91,7 +94,7 @@ class HomeScreen extends React.Component {
     );
   }
 }
-<App4></App4>
+<App5></App5>
 {/* <Locationpage></Locationpage> */}
 
 const RootStack = createStackNavigator(
@@ -99,8 +102,8 @@ const RootStack = createStackNavigator(
     Home: {
       screen: HomeScreen,
     },
-    App4: {
-      screen: App4,
+    App5: {
+      screen: App5,
     },
   },
   {

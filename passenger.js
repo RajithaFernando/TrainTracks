@@ -11,7 +11,7 @@ require('firebase/auth');
 require('@firebase/database');
 require("firebase/firestore");
   
-export default class App4 extends Component {
+export default class passenger extends Component {
     constructor(){
         super();
         this.state = {
@@ -151,8 +151,4 @@ const styles = StyleSheet.create({
       width:'100%',
       height:'50%'
     },
-       
-    big: {
-        fontSize: 48
-    }
 });

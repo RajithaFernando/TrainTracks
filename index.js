@@ -40,9 +40,17 @@
 
 
 // ///////////////////////////////////////
+// import {AppRegistry} from 'react-native';
+
+// import App4 from './app4';
+// import {name as appName} from './app.json';
+
+// AppRegistry.registerComponent(appName, () => App4);
+
+// ////////////
 import {AppRegistry} from 'react-native';
 
-import App4 from './app4';
+import App5 from './app5';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App4);
+AppRegistry.registerComponent(appName, () => App5);
