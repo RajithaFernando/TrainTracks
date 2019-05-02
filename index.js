@@ -56,9 +56,18 @@
 // AppRegistry.registerComponent(appName, () => App5);
 
 // ////////////////////
+// import {AppRegistry} from 'react-native';
+
+// import App5user from './app5user';
+// import {name as appName} from './app.json';
+
+// AppRegistry.registerComponent(appName, () => App5user);
+
+// //////////////////////////
 import {AppRegistry} from 'react-native';
 
-import App5user from './app5user';
+import Auth from './auth/Auth';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => App5user);
+AppRegistry.registerComponent(appName, () => Auth);
+
