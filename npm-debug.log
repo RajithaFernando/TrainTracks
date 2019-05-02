@@ -1,0 +1,38 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'ls', '--depth', '0', '--json' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 error extraneous: metro-babylon7 /home/rajitha/TrainTracks/node_modules/metro-babylon7
+4 error error in /home/rajitha/TrainTracks/node_modules/metro-babylon7: ENOENT: no such file or directory, open '/home/rajitha/TrainTracks/node_modules/metro-babylon7/package.json'
+4 error extraneous: regjsparser /home/rajitha/TrainTracks/node_modules/regjsparser
+4 error error in /home/rajitha/TrainTracks/node_modules/regjsparser: ENOENT: no such file or directory, open '/home/rajitha/TrainTracks/node_modules/regjsparser/package.json'
+4 error extraneous: home-or-tmp@2.0.0 /home/rajitha/TrainTracks/node_modules/home-or-tmp
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve-dependencies@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-snapshot@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-snapshot@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-snapshot@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-resolve@24.3.1
+4 error peer dep missing: jest-haste-map@^24.0.0, required by jest-snapshot@24.3.1
+4 error extraneous: babel-core /home/rajitha/TrainTracks/node_modules/metro/node_modules/babel-core
+4 error error in /home/rajitha/TrainTracks/node_modules/metro/node_modules/babel-core: ENOENT: no such file or directory, open '/home/rajitha/TrainTracks/node_modules/metro/node_modules/babel-core/package.json'
+4 error invalid: react-native-gesture-handler@1.0.16 /home/rajitha/TrainTracks/node_modules/react-native-gesture-handler
+5 verbose exit [ 1, true ]
+6 verbose stack Error: write EPIPE
+6 verbose stack     at _errnoException (util.js:1022:11)
+6 verbose stack     at WriteWrap.afterWrite [as oncomplete] (net.js:880:14)
+7 verbose cwd /home/rajitha/TrainTracks
+8 error Linux 4.15.0-45-generic
+9 error argv "/usr/bin/node" "/usr/bin/npm" "ls" "--depth" "0" "--json"
+10 error node v8.10.0
+11 error npm  v3.5.2
+12 error code EPIPE
+13 error errno EPIPE
+14 error syscall write
+15 error write EPIPE
+16 error If you need help, you may report this error at:
+16 error     <https://github.com/npm/npm/issues>
+17 verbose exit [ 1, true ]
