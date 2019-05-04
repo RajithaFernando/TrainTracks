@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View ,Dimensions, Button} from 'react-native';
+import { StyleSheet, Text, View ,Dimensions, Button, ActivityIndicator} from 'react-native';
 
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
@@ -16,8 +16,8 @@ export default class App5user extends Component {
     constructor(){
         super();
         this.state = {
-            lat:null,
-            lon:null,
+            lat:0,
+            lon:0,
             message:"",
             stations:"",   
             lats:[],
@@ -31,11 +31,16 @@ export default class App5user extends Component {
                     Dimensions.get("window").height *
                     0.0122
                 },
-            code:[]
+            code:[],
+            marker :{
+
+            }
         }
         
     }
-    componentWillMount(){
+    
+
+    componentDidMount(){
         firebase.initializeApp({
             apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
             authDomain: "shareplaces-5a4c6.firebaseapp.com",
@@ -44,30 +49,40 @@ export default class App5user extends Component {
             storageBucket: "shareplaces-5a4c6.appspot.com",
             messagingSenderId: "316261499606"
           });
-          
-        
-    }
-    componentDidMount(){
+        var lat = null 
+        var lon = null
         const database = firebase.firestore()
         var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         
         setInterval(  
         getdata =()=>{ trainsref.get().then(function(doc) {    
             if (doc.exists) {
-                var lat = doc.data().lat
-                var lon = doc.data().lon
-                alert(lat)
-                fun =(lat, lon) => this.setState({
+                lat = doc.data().lat
+                lon = doc.data().lon
+                // alert(lat)
+               
+                this.setState({
                     lat :lat,
-                    lon:lon
+                    lon :lon,
+                    loc:{
+                        latitude: lat,
+                        longitude: lon,}
                     })
+
                 }
             else{
-                // alert('Sorry ! Data Not Available')
+                alert('Sorry ! Data Not Available')
                 }
-            }).catch(err => {
+            }.bind(this)).catch(err => {
                 // alert('Error getting Data. Check your Connection and try Again');
                 });
+            newfun2 =()=>{
+                    this.setState({
+                        lat :lat,
+                        lon :lon,
+                        })
+                }
+            
             }, 10000)
         
     }
@@ -75,22 +90,29 @@ export default class App5user extends Component {
     render(){
         return(
             <View style={styles.container}> 
-                <MapView
-                    initialRegion={this.state.loc}
-                    region={this.state.loc}
-                    style={styles.map}
-                >
-                {this.state.lat && <Marker coordinate={{
-                    latitude:this.state.lat ,
-                    longitude: this.state.lon}}
-                    image={require('./img/icon.png')} >
-                </Marker>}
-                </MapView>
+                {this.state.lat ? 
+                    
+                    <MapView
+                    region={this.state.lat}
+                    onRegionChange={this.onRegionChange}
+                    />
+                
+                : <ActivityIndicator size="large" color="#0000ff" />
+
+                }
+                
+                
+                <Text>{this.state.lon}state of lat</Text>
+                <Text>{this.state.lat}state of</Text>
+                <Button title ="press " onPress={this.newfun2}></Button>
                 
             </View>
         )
     }
 }
+
+
+
 
 const styles = StyleSheet.create({
     

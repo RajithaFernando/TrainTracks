@@ -47,44 +47,7 @@ export default class App5 extends Component {
         var lats =[]
         var lons = []
         var code =''
-        // RNLocation.configure({
-        //     distanceFilter: 100, // Meters
-        //     desiredAccuracy: {
-        //         ios: "best",
-        //         android: "balancedPowerAccuracy"
-        //         },
-        //     // Android only
-        //     androidProvider: "auto",
-        //     interval: 5000, // Milliseconds
-        //     fastestInterval: 10000, // Milliseconds
-        //     maxWaitTime: 5000, // Milliseconds
-        //     })
-        // RNLocation.requestPermission({
-        //     ios: "whenInUse",
-        //     android: {
-        //         detail: "fine"
-        //         }
-        //     }).then(granted => {
-        //         if (granted) {
-        //             this.locationSubscription = RNLocation.subscribeToLocationUpdates(locations => {
-                    
-        //             var lat = locations[0].latitude;
-        //             var lon = locations[0].longitude;
-        //             this.setState({ 
-        //                 lat: lat, 
-        //                 lon: lon , 
-        //                 message:'Location Updated',
-        //                 loc:{
-        //                     latitude:lat,
-        //                     longitude:lon}
-        //             });
-        //             })
-        //           }
-        //           else{
-        //               alert('You need to give Location Permission. Closs App and Try again')
-        //           }
-        //     })
-
+       
         firebase.initializeApp({
             apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
             authDomain: "shareplaces-5a4c6.firebaseapp.com",
@@ -117,7 +80,7 @@ export default class App5 extends Component {
                         }
                     })
                     alert(position.coords.latitude)
-                    reference.set({
+                    reference.update({
                         lat: position.coords.latitude,
                         lng: position.coords.longitude, 
                     }).then(()=>{
