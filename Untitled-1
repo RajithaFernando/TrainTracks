@@ -1,0 +1,20 @@
+{/* <MapView
+                    region={this.state.lat}
+                    onRegionChange={this.onRegionChange}
+                    /> */}
+
+
+
+
+                    {/* <MapView
+                        region={this.state.region}
+                        style={styles.map}
+                        onRegionChange={this.onRegionChange}
+                    >
+                    <Marker coordinate={{
+                        latitude:this.state.region.latitude,
+                        longitude: this.state.region.longitude}}
+                        image={require('./img/icon.png')} >
+                    </Marker>
+                    </MapView>
+                     */}

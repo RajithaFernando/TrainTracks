@@ -13,28 +13,23 @@ require("firebase/firestore");
 
 
 export default class App5user extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             lat:0,
             lon:0,
             message:"",
             stations:"",   
-            lats:[],
-            lons:[],
-            loc :{
-                latitude: 7.093546,
-                longitude: 79.993703,
+            region:{
+                latitude: 7.999999,
+                longitude: 79.999999,
                 latitudeDelta: 0.0122,
                 longitudeDelta:
                     Dimensions.get("window").width /
                     Dimensions.get("window").height *
                     0.0122
                 },
-            code:[],
-            marker :{
-
-            }
+            ex:''
         }
         
     }
@@ -58,16 +53,19 @@ export default class App5user extends Component {
         getdata =()=>{ trainsref.get().then(function(doc) {    
             if (doc.exists) {
                 lat = doc.data().lat
-                lon = doc.data().lon
-                // alert(lat)
-               
+                lon = doc.data().lng
+                var region = {...this.state.region}
+                region.latitude =  lat
+                region.longitude = lon
+                region.latitudeDelta =  0.0922
+                region.longitudeDelta = 0.0422
+                this.setState({region})
+                
+                
                 this.setState({
                     lat :lat,
                     lon :lon,
-                    loc:{
-                        latitude: lat,
-                        longitude: lon,}
-                    })
+                })
 
                 }
             else{
@@ -76,12 +74,6 @@ export default class App5user extends Component {
             }.bind(this)).catch(err => {
                 // alert('Error getting Data. Check your Connection and try Again');
                 });
-            newfun2 =()=>{
-                    this.setState({
-                        lat :lat,
-                        lon :lon,
-                        })
-                }
             
             }, 10000)
         
@@ -93,17 +85,25 @@ export default class App5user extends Component {
                 {this.state.lat ? 
                     
                     <MapView
-                    region={this.state.lat}
-                    onRegionChange={this.onRegionChange}
-                    />
+                        region={this.state.region}
+                        style={styles.map}
+                        onRegionChange={this.onRegionChange}
+                    >
+                    <Marker coordinate={{
+                        latitude:this.state.region.latitude,
+                        longitude: this.state.region.longitude}}
+                        image={require('./img/icon.png')} >
+                    </Marker>
+                    </MapView>
                 
                 : <ActivityIndicator size="large" color="#0000ff" />
 
                 }
                 
                 
-                <Text>{this.state.lon}state of lat</Text>
-                <Text>{this.state.lat}state of</Text>
+                <Text>{this.state.region.longitude} --state of region</Text>
+                <Text>{this.state.region.latitude}state of region </Text>
+                <Text>{this.state.ex}state of loc</Text>
                 <Button title ="press " onPress={this.newfun2}></Button>
                 
             </View>
