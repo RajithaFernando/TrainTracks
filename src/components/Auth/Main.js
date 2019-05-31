@@ -11,7 +11,7 @@ export default class Main extends Component {
     componentDidMount() {
         const { currentUser } = firebase.auth()
         this.setState({ currentUser })
-    }
+    } 
     signOutUser = async () => {
         try {
             await firebase.auth().signOut();
@@ -22,6 +22,16 @@ export default class Main extends Component {
         }
     }
 
+    goSearch = async () => {
+        try {   
+            navigate('Login');
+
+        } catch (error) {
+            alert(error);
+        }
+    }
+
+
     render() {
         const { currentUser } = this.state
         // const curuser = this.state.curuser
@@ -31,6 +41,9 @@ export default class Main extends Component {
                 Hi {currentUser && currentUser.email}!
                 </Text>
                     <Button title="Logout" onPress={this.signOutUser} />
+                    <Button title="Go to Search Page" 
+                    onPress={() => this.props.navigation.navigate('Search2')} 
+                    />
             </View>
         )
     }

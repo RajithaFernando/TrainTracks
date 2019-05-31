@@ -12,7 +12,9 @@ export default class Login extends Component {
         firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(() => this.props.navigation.navigate('Main'))
+        .then(
+            
+            () => this.props.navigation.navigate('Main'))
         .catch(error => this.setState({ errorMessage: error.message }))
     }
     render() {
