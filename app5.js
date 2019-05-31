@@ -6,69 +6,42 @@ import { Marker } from 'react-native-maps';
 
 import RNLocation from 'react-native-location';
 
-import firebase from '@firebase/app';
+import Fire from './config/Fire'
+
+// import firebase from '@firebase/app';
 require('firebase/auth');
 require('@firebase/database');
 require("firebase/firestore");
 
 
 export default class App5 extends Component {
-    constructor(){
-        super();
-        this.state = {
-            lat:"",
-            lon:"",
-            message:"",
-            stations:"",   
-            lats:[],
-            lons:[],
-            loc :{
-                latitude: 7.093546,
-                longitude: 79.993703,
-                latitudeDelta: 0.0122,
-                longitudeDelta:
-                    Dimensions.get("window").width /
-                    Dimensions.get("window").height *
-                    0.0122
-                },
-            code:[],
-            region: {
-                latitude: 7.093546,
-                longitude: 7.093546,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0422,
-            }
-        }
-        
-    }
-
+    
+    intervalID = 0
     componentWillMount(){
         var stations = []
         var lats =[]
         var lons = []
-        var code =''
-       
-        firebase.initializeApp({
-            apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
-            authDomain: "shareplaces-5a4c6.firebaseapp.com",
-            databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
-            projectId: "shareplaces-5a4c6",
-            storageBucket: "shareplaces-5a4c6.appspot.com",
-            messagingSenderId: "316261499606"
-          });
+        var code =''  
           
-        const database = firebase.firestore()
+        const database = Fire.firestore()
         // var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         var stationsref = database.collection('stations')
         
-
+        
     }
     
     
+
+    
     componentDidMount() {
-        const database = firebase.firestore()
+   
+        const { navigation } = this.props;
+        const trainName = navigation.getParam('trainName');
+        const database = Fire.firestore()
         var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
-        setInterval( getLocation = ()=>{
+        var user = Fire.auth().currentUser;
+
+        this.intervalID = setInterval ( ()=> {
             navigator.geolocation.getCurrentPosition(
                 position => {
                     this.setState({
@@ -92,10 +65,45 @@ export default class App5 extends Component {
                 (error) => console.log(error.message),
                 { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
             );
-        },5000 )    
-        // write Location to firebase
+         }, 5000)
+        //  clearInterval(interval1)
+         
     }
     
+
+
+    constructor(){
+        super();
+        this.state = {
+            lat:"",
+            lon:"",
+            message:"",
+            stations:"",   
+            lats:[],
+            lons:[],
+            loc :{
+                latitude: 7.093546,
+                longitude: 79.993703,
+                latitudeDelta: 0.0122,
+                longitudeDelta:
+                    Dimensions.get("window").width /
+                    Dimensions.get("window").height *
+                    0.0122
+                },
+            code:[],
+            updating:true,
+            region: {
+                latitude: 7.093546,
+                longitude: 7.093546,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0422,
+            }
+        }
+        
+    }
+    componentWillUnmount() {
+        clearInterval(this.intervalID);
+      }
     render(){
         return(
             <View style={styles.container}> 
@@ -109,7 +117,9 @@ export default class App5 extends Component {
                     image={require('./img/icon.png')} >
                 </Marker>
                 </MapView>
-                <Button title ="press "onPress={this.ShowAlertWithDelay}></Button>
+                <Button title ="Stop Providing Location" 
+                    onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
+                </Button>
             </View>
         )
     }

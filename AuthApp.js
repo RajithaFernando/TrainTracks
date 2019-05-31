@@ -8,6 +8,7 @@ import Login from './src/components/Auth/Login'
 import Main from './src/components/Auth/Main'
 import Search from './src/components/Auth/Search'
 import Search2 from './src/components/Auth/Search2'
+import TrainDetails2 from './src/components/Auth/TrainDetails2'
 import app5 from './app5'
 import App5user from './App5user'
 
@@ -21,6 +22,7 @@ const AuthApp = createStackNavigator(
       Main,
       Search,
       Search2,
+      TrainDetails2,
       app5,
       App5user
 

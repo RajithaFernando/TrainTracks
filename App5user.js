@@ -104,7 +104,9 @@ export default class App5user extends Component {
                 <Text>{this.state.region.longitude} --state of region</Text>
                 <Text>{this.state.region.latitude}state of region </Text>
                 <Text>{this.state.ex}state of loc</Text>
-                <Button title ="press " onPress={this.newfun2}></Button>
+                <Button title ="Stop Providing Location" 
+                    onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
+                </Button>
                 
             </View>
         )

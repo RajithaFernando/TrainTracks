@@ -78,7 +78,7 @@ class Search2 extends Component{
     }
       navigate=()=>{
         if(this.state.query != '' && this.state.query2 != ''){
-        this.props.navigation.navigate('TrainD',{
+        this.props.navigation.navigate('TrainDetails2',{
           startStation: this.state.query,
           endStation  : this.state.query2,
         })
@@ -190,10 +190,7 @@ class Search2 extends Component{
                 )}
               </CardSection>
               <CardSection>
-              <Button onPress={ this.navigate
-              }>
-                          Look Up
-                      </Button>
+              <Button onPress={ this.navigate}>Look Up</Button>
               </CardSection>
               
               </Card>
