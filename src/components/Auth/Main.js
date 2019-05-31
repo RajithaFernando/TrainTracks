@@ -44,6 +44,12 @@ export default class Main extends Component {
                     <Button title="Go to Search Page" 
                     onPress={() => this.props.navigation.navigate('Search2')} 
                     />
+                    <View style={styles.nitify}></View>
+                    <View style={styles.container2}>
+                        <Text>Notifications</Text>
+                        <Text>Gampaha To Colombo Train Delay</Text>
+                        <Text>Gampaha To Colombo Extra Train Today</Text>
+                    </View>
             </View>
         )
     }
@@ -53,5 +59,17 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    nitify:{
+        padding:10,
+        backgroundColor:'#eee',
+    },
+    container2: {
+        width:'100%',
+        padding:10,
+        backgroundColor:'#eee',
+        margin:10,
+        marginLeft:10,
+        marginRight:10,
+    },
 })

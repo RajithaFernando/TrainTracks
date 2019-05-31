@@ -5,7 +5,7 @@ import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
 // import RNLocation from 'react-native-location';
-
+import Fire from './config/Fire'
 import firebase from '@firebase/app';
 require('firebase/auth');
 require('@firebase/database');
@@ -13,6 +13,8 @@ require("firebase/firestore");
 
 
 export default class App5user extends Component {
+
+    intervalID = 0
     constructor(props){
         super(props);
         this.state = {
@@ -36,21 +38,20 @@ export default class App5user extends Component {
     
 
     componentDidMount(){
-        firebase.initializeApp({
-            apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
-            authDomain: "shareplaces-5a4c6.firebaseapp.com",
-            databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
-            projectId: "shareplaces-5a4c6",
-            storageBucket: "shareplaces-5a4c6.appspot.com",
-            messagingSenderId: "316261499606"
-          });
+        // firebase.initializeApp({
+        //     apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
+        //     authDomain: "shareplaces-5a4c6.firebaseapp.com",
+        //     databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
+        //     projectId: "shareplaces-5a4c6",
+        //     storageBucket: "shareplaces-5a4c6.appspot.com",
+        //     messagingSenderId: "316261499606"
+        //   });
         var lat = null 
         var lon = null
-        const database = firebase.firestore()
+        const database = Fire.firestore()
         var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         
-        setInterval(  
-        getdata =()=>{ trainsref.get().then(function(doc) {    
+        this.intervalID = setInterval( ()=>{ trainsref.get().then(function(doc) {    
             if (doc.exists) {
                 lat = doc.data().lat
                 lon = doc.data().lng
@@ -78,7 +79,9 @@ export default class App5user extends Component {
             }, 10000)
         
     }
-    
+    componentWillUnmount() {
+        clearInterval(this.intervalID);
+      }
     render(){
         return(
             <View style={styles.container}> 
@@ -104,7 +107,7 @@ export default class App5user extends Component {
                 <Text>{this.state.region.longitude} --state of region</Text>
                 <Text>{this.state.region.latitude}state of region </Text>
                 <Text>{this.state.ex}state of loc</Text>
-                <Button title ="Stop Providing Location" 
+                <Button title ="<- Go Back" 
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
                 </Button>
                 
