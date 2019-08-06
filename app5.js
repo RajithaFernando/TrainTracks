@@ -84,7 +84,7 @@ export default class App5 extends Component {
             loc :{
                 latitude: 7.093546,
                 longitude: 79.993703,
-                latitudeDelta: 0.0122,
+                latitudeDelta: 0.04,
                 longitudeDelta:
                     Dimensions.get("window").width /
                     Dimensions.get("window").height *

@@ -25,11 +25,11 @@ export default class App5user extends Component {
             region:{
                 latitude: 7.999999,
                 longitude: 79.999999,
-                latitudeDelta: 0.0122,
+                latitudeDelta: 0.015*5,
                 longitudeDelta:
                     Dimensions.get("window").width /
                     Dimensions.get("window").height *
-                    0.0122
+                    0.0121*5
                 },
             ex:''
         }
@@ -58,8 +58,8 @@ export default class App5user extends Component {
                 var region = {...this.state.region}
                 region.latitude =  lat
                 region.longitude = lon
-                region.latitudeDelta =  0.0922
-                region.longitudeDelta = 0.0422
+                region.latitudeDelta =  0.005
+                region.longitudeDelta = 0.005
                 this.setState({region})
                 
                 

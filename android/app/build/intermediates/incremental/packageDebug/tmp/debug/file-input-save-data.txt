@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Apr 17 11:37:50 IST 2019
+#Mon Jun 10 16:56:07 IST 2019
 5.base=/home/rajitha/TrainTracks/android/app/build/intermediates/transforms/mergeJniLibs/debug/0
 42.base=/home/rajitha/TrainTracks/android/app/build/intermediates/transforms/dexMerger/debug/0
 22.path=lib/x86/libicu_common.so
