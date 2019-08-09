@@ -20,6 +20,7 @@ export default class App5user extends Component {
         this.state = {
             lat:0,
             lon:0,
+            timedif:0,
             message:"",
             stations:"",   
             region:{
@@ -48,24 +49,31 @@ export default class App5user extends Component {
         //   });
         var lat = null 
         var lon = null
+        var timeUpdate = null
+        var timedif = null
         const database = Fire.firestore()
         var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+        var timeNow = Date.now()
         
         this.intervalID = setInterval( ()=>{ trainsref.get().then(function(doc) {    
             if (doc.exists) {
                 lat = doc.data().lat
                 lon = doc.data().lng
+                timeUpdate = doc.data().time
                 var region = {...this.state.region}
                 region.latitude =  lat
                 region.longitude = lon
                 region.latitudeDelta =  0.005
                 region.longitudeDelta = 0.005
                 this.setState({region})
-                
-                
+                timedif = Math.round((timeNow -  timeUpdate)/60000)
+                if (timedif > 10){
+
+                }
                 this.setState({
                     lat :lat,
                     lon :lon,
+                    timedif : timedif
                 })
 
                 }
@@ -106,6 +114,7 @@ export default class App5user extends Component {
                 
                 <Text>{this.state.region.longitude} --state of region</Text>
                 <Text>{this.state.region.latitude}state of region </Text>
+                <Text>Last Updated {this.state.timedif} Munits Ago </Text>
                 <Text>{this.state.ex}state of loc</Text>
                 <Button title ="<- Go Back" 
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>

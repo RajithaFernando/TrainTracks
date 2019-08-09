@@ -54,7 +54,8 @@ class TrainDetails extends Component {
                       title : doc.id, 
                       description :'Departure from '+ startStation +' : '+ doc.get(startStation+'.Dep') +'\n'+
                                    'Arrival at '    + endStation   +' : '+ doc.get(endStation+'.Arr')   +'\n'+
-                                   'Description'                                                        +'\n'+                                               
+                                   'Description'                                                        +'\n'+
+                                    'Last Updated At'+ doc.get(update)  +'\n'+                                           
                                    'Available Classes'
                                    ,
                       pressed: false

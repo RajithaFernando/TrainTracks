@@ -49,6 +49,8 @@ export default class Main extends Component {
                         <Text>Notifications</Text>
                         <Text>Gampaha To Colombo Train Delay</Text>
                         <Text>Gampaha To Colombo Extra Train Today</Text>
+
+                        
                     </View>
             </View>
         )

@@ -7,7 +7,7 @@ import { Marker } from 'react-native-maps';
 import RNLocation from 'react-native-location';
 
 import Fire from './config/Fire'
-
+//drivers 
 // import firebase from '@firebase/app';
 require('firebase/auth');
 require('@firebase/database');
@@ -40,7 +40,9 @@ export default class App5 extends Component {
         const database = Fire.firestore()
         var reference = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         var user = Fire.auth().currentUser;
-
+        var sec = Date.now(); //Current Seconds
+        var d = Date(Date.now()); 
+        update = d.toString() 
         this.intervalID = setInterval ( ()=> {
             navigator.geolocation.getCurrentPosition(
                 position => {
@@ -53,9 +55,12 @@ export default class App5 extends Component {
                         }
                     })
                     alert(position.coords.latitude)
+                    alert(sec)
                     reference.update({
                         lat: position.coords.latitude,
                         lng: position.coords.longitude, 
+                        time: sec,
+                        update :update,
                     }).then(()=>{
                         alert('firebase updated')
                         }).catch(function(error) {

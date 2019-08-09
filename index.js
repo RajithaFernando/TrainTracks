@@ -72,12 +72,13 @@
 // AppRegistry.registerComponent(appName, () => Auth);
 
 // ///////////////////////////////
-import {AppRegistry} from 'react-native';
+// this is the one
+// import {AppRegistry} from 'react-native';
 
-import AuthApp from './AuthApp';
-import {name as appName} from './app.json';
+// import AuthApp from './AuthApp';
+// import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => AuthApp);
+// AppRegistry.registerComponent(appName, () => AuthApp);
 
 // /////////////////////////////////
 
@@ -86,4 +87,17 @@ AppRegistry.registerComponent(appName, () => AuthApp);
 // import App from './src2/App';
 
 // AppRegistry.registerComponent('sharePlaces',() => App);
+// /////////////////////////////////
+import {AppRegistry} from 'react-native';
 
+import distance from './distance';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => distance);
+
+
+//
+// import { AppRegistry } from 'react-native';
+// import distance from './distance';
+
+// AppRegistry.registerComponent('sharePlaces',() => distance);
