@@ -18,6 +18,15 @@ export default class App5user extends Component {
     constructor(props){
         super(props);
         this.state = {
+            name:[],
+            lats:[],
+            lngs:[],
+            passed:[],
+            GoingtoName:'',
+            CamefromName:'',
+            TotalDistanceval:'',
+            progressbar:'',
+            
             lat:0,
             lon:0,
             timedif:0,
@@ -39,14 +48,10 @@ export default class App5user extends Component {
     
 
     componentDidMount(){
-        // firebase.initializeApp({
-        //     apiKey: "AIzaSyDin3Ah4eMirhFDz0eizFjGRx03C1v2IMo",
-        //     authDomain: "shareplaces-5a4c6.firebaseapp.com",
-        //     databaseURL: "https://shareplaces-5a4c6.firebaseio.com",
-        //     projectId: "shareplaces-5a4c6",
-        //     storageBucket: "shareplaces-5a4c6.appspot.com",
-        //     messagingSenderId: "316261499606"
-        //   });
+        var names=[]
+        var lats=[]
+        var lngs=[]
+
         var lat = null 
         var lon = null
         var timeUpdate = null
@@ -68,18 +73,83 @@ export default class App5user extends Component {
                 this.setState({region})
                 timedif = Math.round((timeNow -  timeUpdate)/60000)
                 if (timedif > 10){
-
                 }
                 this.setState({
                     lat :lat,
                     lon :lon,
                     timedif : timedif
                 })
+                var trainref = database.collection('trains').doc('locations')
+                var query = trainref.get().then(function(doc) {
+                    if (doc.exists){
+                        // lert('this'+doc.data().names)
+                        names = doc.data().names
+                        lats = doc.data().latitude
+                        lngs = doc.data().longitude
+                        return
+                    }    
+                })
+                var tlat 
+                var tlon
+                var leng 
+                distancefrom = []
+                var closest
 
-                }
+                var trainsref2 = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+                var query2 = trainsref2.get().then(function(doc){
+                    // if (doc.exists){
+                    //     tlat = doc.data().lat
+                    //     tlon = doc.data().lng
+                    //     // lert(tlat)
+                    // }
+                    tlat = lat
+                    tlon = lon
+                    leng = names.length 
+                    for (i=0;i <leng; i++){
+                        var dist = distance(lats[i],lngs[i],tlat,tlon)
+                        distancefrom.push(dist)
+
+                        // lert (i)
+                        // lert(' dura = ' +distancefrom )
+                        }
+                    closest = Math.min(...distancefrom)
+                    // lert('closest is '+ closest)
+                    var indexOfClosest = distancefrom.indexOf(closest)
+                    // lert('index of closest' + indexOfClosest)
+                    
+                    if (closest<0.5){
+                        alert("Train is In 0  "+names[indexOfClosest] )
+                    }
+                    else if (indexOfClosest == 0){
+                        alert("train left staion -0.25- of closest" )
+                    }
+                    else{
+                        var upstation = indexOfClosest - 1
+                        var downstation = indexOfClosest +1
+                        var closeup = distance(lats[upstation],lngs[upstation],tlat,tlon)
+                        var closedown = distance(lats[downstation],lngs[downstation],tlat,tlon)
+
+                        if (closeup < closedown){
+                            alert('train is between upstation and station')
+                            var distancebetween = distance(lats[upstation],lngs[upstation],lats[indexOfClosest],lngs[indexOfClosest])
+                            var progress = (closeup / distancebetween)
+                            this.setState({
+                                GoingtoName:names[indexOfClosest],
+                                CamefromName:names[upstation],
+                                progressbar:progress
+                            })
+                        }
+                        else {
+                            alert('train is between downstation and station')
+                        }
+                    }
+                })
+            }
             else{
                 alert('Sorry ! Data Not Available')
                 }
+
+            
             }.bind(this)).catch(err => {
                 // alert('Error getting Data. Check your Connection and try Again');
                 });

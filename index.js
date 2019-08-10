@@ -90,10 +90,10 @@
 // /////////////////////////////////
 import {AppRegistry} from 'react-native';
 
-import distance from './distance';
+import app5usernew from './app5usernew';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => distance);
+AppRegistry.registerComponent(appName, () => app5usernew);
 
 
 //

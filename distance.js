@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet, Button, Dimensions} from 'react-native'
+import * as Progress from 'react-native-progress';
 
 import Fire from './config/Fire'
 //const database = Fire.firestore()
@@ -15,6 +16,10 @@ export default class distance extends Component {
             lats:[],
             lngs:[],
             passed:[],
+            GoingtoName:'',
+            CamefromName:'',
+            TotalDistanceval:'',
+            progressbar:'',
 
         }
         
@@ -27,41 +32,41 @@ export default class distance extends Component {
         var trainref = database.collection('trains').doc('locations')
         var query = trainref.get().then(function(doc) {
             if (doc.exists){
-                alert('this'+doc.data().names)
+                // lert('this'+doc.data().names)
                 names = doc.data().names
                 lats = doc.data().latitude
                 lngs = doc.data().longitude
                 return
-            }
-            
+            }    
         })
         var tlat 
         var tlon
         var leng 
         distancefrom = []
         var closest
+        
         var trainsref2 = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         var query2 = trainsref2.get().then(function(doc){
             if (doc.exists){
                 tlat = doc.data().lat
                 tlon = doc.data().lng
-                alert(tlat)
+                // lert(tlat)
             }
             leng = names.length 
             for (i=0;i <leng; i++){
                 var dist = distance(lats[i],lngs[i],tlat,tlon)
                 distancefrom.push(dist)
                 
-                alert (i)
-                alert(' dura = ' +distancefrom )
+                // lert (i)
+                // lert(' dura = ' +distancefrom )
                 }
             closest = Math.min(...distancefrom)
-            alert('closest is '+ closest)
+            // lert('closest is '+ closest)
             var indexOfClosest = distancefrom.indexOf(closest)
-            alert('index of closest' + indexOfClosest)
+            // lert('index of closest' + indexOfClosest)
             
             if (closest<0.5){
-                alert("Train is In 0  " +names[indexOfClosest] )
+                alert("Train is In 0  "+names[indexOfClosest] )
             }
             else if (indexOfClosest == 0){
                 alert("train left staion -0.25- of closest" )
@@ -71,17 +76,23 @@ export default class distance extends Component {
                 var downstation = indexOfClosest +1
                 var closeup = distance(lats[upstation],lngs[upstation],tlat,tlon)
                 var closedown = distance(lats[downstation],lngs[downstation],tlat,tlon)
-
-                if (closeup >closedown){
+                
+                if (closeup < closedown){
                     alert('train is between upstation and station')
+                    var distancebetween = distance(lats[upstation],lngs[upstation],lats[indexOfClosest],lngs[indexOfClosest])
+                    var progress = (closeup / distancebetween)
+                    this.setState({
+                        GoingtoName:names[indexOfClosest],
+                        CamefromName:names[upstation],
+                        progressbar:progress
+                    })
                 }
                 else {
                     alert('train is between downstation and station')
                 }
-
             }
-
-        })
+        }.bind(this)
+        )
         var distance =(stlat,stlon,trlat,trlon)=>{
             var R = 6371; // km (change this constant to get miles)
 	        var dLat = (trlat-stlat) * Math.PI / 180;
@@ -101,9 +112,42 @@ export default class distance extends Component {
         return (
             <View>
                 <Text> textInComponent :</Text>
+                <View style={styles.progress}> 
+                    <Button title={this.state.GoingtoName} style={styles.buttonStyle}> </Button>
+                    <Progress.Bar progress={this.state.progressbar} width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
+                    <Button title={this.state.CamefromName} style={styles.buttonStyle}></Button>
+                </View>
+
+                {/* <View style={styles.progress}>
+                <Progress.Bar progress={1}  height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                    <Button title="Walpola" style={styles.buttonStyle}> </Button>
+                    <Progress.Bar progress={0} height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                </View> */}
+                
                 <Text>{this.lngs}</Text>
                 <Text>{}</Text>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    bar :{
+        padding:10,
+        height:50, 
+        width:(Dimensions.get("window").width)*50/100
+    },
+    buttonStyle:{
+        width:(Dimensions.get("window").width)*25/100
+    },
+    progress:{
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row'
+    },
+    bar2:{
+        padding:10,
+        height:50, 
+        width:(Dimensions.get("window").width)*35/100
+    },
+
+})
