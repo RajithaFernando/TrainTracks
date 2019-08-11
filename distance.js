@@ -20,6 +20,7 @@ export default class distance extends Component {
             CamefromName:'',
             TotalDistanceval:'',
             progressbar:'',
+            instation:false,
 
         }
         
@@ -66,7 +67,10 @@ export default class distance extends Component {
             // lert('index of closest' + indexOfClosest)
             
             if (closest<0.5){
-                alert("Train is In 0  "+names[indexOfClosest] )
+                this.setState({
+                    GoingtoName:names[indexOfClosest],
+                    instation:true
+                })
             }
             else if (indexOfClosest == 0){
                 alert("train left staion -0.25- of closest" )
@@ -111,21 +115,24 @@ export default class distance extends Component {
     render() {
         return (
             <View>
-                <Text> textInComponent :</Text>
-                <View style={styles.progress}> 
-                    <Button title={this.state.GoingtoName} style={styles.buttonStyle}> </Button>
-                    <Progress.Bar progress={this.state.progressbar} width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
-                    <Button title={this.state.CamefromName} style={styles.buttonStyle}></Button>
-                </View>
-
-                {/* <View style={styles.progress}>
-                <Progress.Bar progress={1}  height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
-                    <Button title="Walpola" style={styles.buttonStyle}> </Button>
-                    <Progress.Bar progress={0} height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
-                </View> */}
+                {this.state.instation ?
+                    
+                    <View style={styles.progress}>
+                    <Text>This</Text>
+                        <Progress.Bar progress={1}  height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                        <Button title={this.state.GoingtoName} style={styles.buttonStyle}> </Button>
+                        <Progress.Bar progress={0} height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                    </View> 
                 
-                <Text>{this.lngs}</Text>
-                <Text>{}</Text>
+                :
+                    <View style={styles.progress}> 
+                        <Button title={this.state.GoingtoName} style={styles.buttonStyle}> </Button>
+                        <Progress.Bar progress={this.state.progressbar} width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
+                        <Button title={this.state.CamefromName} style={styles.buttonStyle}></Button>
+                    </View>
+
+                }
+                
             </View>
         )
     }

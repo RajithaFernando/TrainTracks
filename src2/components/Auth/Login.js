@@ -1,16 +1,32 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
 
+import Fire from '../../../config2/Fire'
+require('firebase/auth');
+
 export default class Login extends Component {
     state = { email: '', password: '', errorMessage: null }
+    // handleLogin = () => {
+    //     const { email, password } = this.state
+    //     if (1==1){
+    //         this.props.navigation.navigate('Main')
+    //     }
+    //     else{
+    //         alert('Wrong User Name or Password')
+    //     }
+    // }
+
+
+
     handleLogin = () => {
         const { email, password } = this.state
-        if (1==1){
-            this.props.navigation.navigate('Main')
-        }
-        else{
-            alert('Wrong User Name or Password')
-        }
+        Fire
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(
+            
+            () => this.props.navigation.navigate('Main'))
+        .catch(error => this.setState({ errorMessage: error.message }))
     }
 
     render() {
@@ -34,7 +50,7 @@ export default class Login extends Component {
                 onChangeText={password => this.setState({ password })}
                 value={this.state.password}
             />
-            <Button title="Login" onPress={this.handleLogin}/>
+            <Button title="Login" onPress={this.props.navigation.navigate('Main')}/>
             
         </View>
         )

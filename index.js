@@ -72,7 +72,7 @@
 // AppRegistry.registerComponent(appName, () => Auth);
 
 // ///////////////////////////////
-// this is the one
+// this is the one GOTRIP
 import {AppRegistry} from 'react-native';
 
 import AuthApp from './AuthApp';
@@ -94,10 +94,10 @@ AppRegistry.registerComponent(appName, () => AuthApp);
 // i am corrently Devloping this
 // import {AppRegistry} from 'react-native';
 
-// import app5newuser2 from './app5newuser2';
+// import app5userad from './app5userad';
 // import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent(appName, () => app5newuser2);
+// AppRegistry.registerComponent(appName, () => app5userad);
 
 // ////////////////////////////////
 

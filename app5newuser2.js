@@ -43,7 +43,8 @@ export default class app5newuser2 extends Component {
             
             ex:'',
             lastupdatedtime:'',
-            late:false
+            late:false,
+            instation:false,
         }
         
     }
@@ -117,12 +118,14 @@ export default class app5newuser2 extends Component {
                         var indexOfClosest = distancefrom.indexOf(closest)
                         // lert('index of closest' + indexOfClosest)
                         if (closest<0.5){
-                            alert("Train is In 0  "+names[indexOfClosest] )
+                            this.setState({
+                                LeftStation:names[indexOfClosest],
+                                RightStation:'Train is now waiting at ' +names[indexOfClosest]+' Station',
+                                instation:true
+                            })
                             
                         }
-                        else if (indexOfClosest == 0){
-                            alert("train left staion -0.25- of closest" )
-                        }
+                        
                         else{
                             var upstation = indexOfClosest - 1
                             var downstation = indexOfClosest +1
@@ -236,17 +239,34 @@ export default class app5newuser2 extends Component {
                 }
                 <View style={{margin:10}}></View>
 
-                <View style={styles.progress}> 
+                {/* <View style={styles.progress}> 
                     <Button title={this.state.LeftStation} style={styles.buttonStyle}> </Button>
                     <Progress.Bar progress={this.state.progressbar } width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
                     <Button title={this.state.RightStation} style={styles.buttonStyle}></Button>
-                </View>
+                </View> */}
+                {this.state.instation ? <Text style={styles.inbetween}>{this.state.RightStation}</Text>
+                :<Text></Text>}
+                {this.state.instation ?
+                    
+                    <View style={styles.progress}>
+                        <Progress.Bar progress={1}  height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                        <Button title={this.state.LeftStation} style={styles.buttonStyle}> </Button>
+                        <Progress.Bar progress={0} height={20} style={styles.bar2} animationType='timing' borderRadius={10} />
+                        
+                    </View> 
+                    
+                            
+                    
+                
+                :
+                    <View style={styles.progress}> 
+                        <Button title={this.state.LeftStation} style={styles.buttonStyle}> </Button>
+                        <Progress.Bar progress={this.state.progressbar} width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
+                        <Button title={this.state.RightStation} style={styles.buttonStyle}></Button>
+                    </View>
 
+                }
                 
-                <Text>{this.state.longitude} --state of region</Text>
-                <Text>{this.state.RightStation}Going to name </Text>
-                
-                <Text>{this.state.ex}state of loc</Text>
                 <Button title ="<- Go Back" 
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
                 </Button>
@@ -287,5 +307,8 @@ const styles = StyleSheet.create({
     },
     buttonStyle:{
         width:(Dimensions.get("window").width)*25/100
+    },
+    inbetween:{
+
     },
 })

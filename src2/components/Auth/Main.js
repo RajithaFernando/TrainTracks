@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Button ,TouchableOpacity} from 'react-native'
 
+
+
 export default class Main extends Component {
     state = { currentUser: null }
     
-
-
+    
+    
     render() {
         
         // const curuser = this.state.curuser
