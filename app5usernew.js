@@ -42,7 +42,9 @@ export default class app5newuser extends Component {
                     Dimensions.get("window").height *
                     0.0121*5
                 },
-            ex:''
+            ex:'',
+            lastupdatedtime:'',
+            late:false
         }
         
     }
@@ -50,7 +52,6 @@ export default class app5newuser extends Component {
         var names=[]
         var lats=[]
         var lngs=[]
-        var nameeeeee
         var lat = null 
         var lon = null
         var timeUpdate = null
@@ -72,9 +73,23 @@ export default class app5newuser extends Component {
                 region.latitudeDelta =  0.005
                 region.longitudeDelta = 0.005
                 this.setState({region})
-                timedif = Math.round((timeNow -  timeUpdate)/60000)
-                // if (timedif > 10){
-                // }
+                timedif = Math.round((timeNow -  timeUpdate)/1000)
+                var h = Math.floor(timedif / 3600);
+                var m = Math.floor(timedif % 3600 / 60);
+                var s = Math.floor(timedif % 3600 % 60);
+                if (h==0 && m ==0){
+                    this.setState({lastupdatedtime:'Location Last Updated ' + s + ' Seconds ago'})
+                }
+                else if (h==0){
+                    this.setState({lastupdatedtime:'Location Last Updated ' +m+' Munits and '+ s +' Seconds ago'})
+                    if (m>10){
+                        this.setState({late:true})
+                    }
+                }
+                else if (h>0){
+                    this.setState({lastupdatedtime:'Location Last Updated ' +h+ ' Hours and ' + s + ' Munits ago',late:true})
+                    
+                }
                 this.setState({
                     lat :lat,
                     lon :lon,
@@ -206,14 +221,24 @@ export default class app5newuser extends Component {
                 : <ActivityIndicator size="large" color="#0000ff" />
 
                 }
+                <View style={{margin:10}}></View>
+                {this.state.late ? 
+                    <Text style={{color: 'red',fontWeight: 'bold'}}>{this.state.lastupdatedtime}</Text>
+                :
+                <Text style={{color: 'red',fontWeight: 'bold'}}>{this.state.lastupdatedtime}</Text>
+                }
+                <View style={{margin:10}}></View>
+
                 <View style={styles.progress}> 
                     <Button title={this.state.LeftStation} style={styles.buttonStyle}> </Button>
                     <Progress.Bar progress={this.state.progressbar } width={200} height={20} style={styles.bar} animationType='timing' borderRadius={10} />
                     <Button title={this.state.RightStation} style={styles.buttonStyle}></Button>
                 </View>
+
+                
                 <Text>{this.state.region.longitude} --state of region</Text>
-                <Text>{this.nameeeeee}Going to name </Text>
-                <Text>Last Updated {this.state.timedif} Munits Ago </Text>
+                <Text>{this.state.RightStation}Going to name </Text>
+                
                 <Text>{this.state.ex}state of loc</Text>
                 <Button title ="<- Go Back" 
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>

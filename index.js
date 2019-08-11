@@ -73,12 +73,12 @@
 
 // ///////////////////////////////
 // this is the one
-// import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native';
 
-// import AuthApp from './AuthApp';
-// import {name as appName} from './app.json';
+import AuthApp from './AuthApp';
+import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent(appName, () => AuthApp);
+AppRegistry.registerComponent(appName, () => AuthApp);
 
 // /////////////////////////////////
 
@@ -88,12 +88,21 @@
 
 // AppRegistry.registerComponent('sharePlaces',() => App);
 // /////////////////////////////////
-import {AppRegistry} from 'react-native';
 
-import app5usernew from './app5usernew';
-import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => app5usernew);
+
+// i am corrently Devloping this
+// import {AppRegistry} from 'react-native';
+
+// import app5newuser2 from './app5newuser2';
+// import {name as appName} from './app.json';
+
+// AppRegistry.registerComponent(appName, () => app5newuser2);
+
+// ////////////////////////////////
+
+
+
 
 
 //
