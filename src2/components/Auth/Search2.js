@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {StyleSheet,Text,View,TouchableOpacity,ScrollView,Button,ActivityIndicator} from 'react-native';
+import {StyleSheet,Text,View,TouchableOpacity,ScrollView,Button,ActivityIndicator,LayoutAnimation} from 'react-native';
 
 
 import Fire from '../../../config2/Fire'
@@ -22,8 +22,8 @@ class Search2 extends Component{
             end:[],
             msg:[],
             update:false,
-            notification:[]
-            
+            notification:[],
+            expanded:false
             };
     }
     componentDidMount(){
@@ -78,18 +78,27 @@ class Search2 extends Component{
 
                         else{
                             timeremaning = sh + 'hours  and ' +sm +' Minits remaning'
-                        }
+						}
+						
+						
+							
+						
                         this.setState(prevState => ({
-                            notification: [...prevState.notification,   <View style={styles.list}>
-                                                                            <View><Text style={{fontWeight: 'bold', fontSize: 20,}}>{doc.data().plate}</Text></View>
-                                                                            <View><Text style={{fontWeight: 'bold', fontSize: 20, color: '#56A926'}}>Vehical Pickup Reminder</Text></View> 
-                                                                            <View><Text style={{fontWeight: 'bold', fontSize: 20, color: '#2666A9'}}>{timeremaning}</Text></View> 
-                                                                            <View>
-                                                                                <Text style={{fontWeight: 'bold', fontSize: 15,}}>Client Message :<Text style={{fontWeight: 'normal', fontSize: 14,}}>{doc.data().discrip}</Text></Text>
-                                                                            </View>
-                                                                            <View>
-                                                                                <Text style={{fontWeight: 'bold', fontSize: 15,}}>Client Mobile:<Text style={{fontWeight: 'bold',}}> {doc.data().mobile}</Text></Text>
-                                                                            </View></View>  ],                            
+                            notification: [...prevState.notification,  <View style={styles.list}>
+								<TouchableOpacity activeOpacity={0.8} onPress={this.changeLayout(1)} style={styles.Btn}>
+									<Text style={{fontWeight: 'bold', fontSize: 20,}}>{doc.data().plate}</Text>
+								</TouchableOpacity>
+                                <View style={{ height: this.state.expanded ? null : 0, overflow: 'hidden' }}>
+									<View><Text style={{fontWeight: 'bold', fontSize: 20, color: '#56A926'}}>Vehical Pickup Reminder</Text></View> 
+									<View><Text style={{fontWeight: 'bold', fontSize: 20, color: '#2666A9'}}>{timeremaning}</Text></View> 
+									<View>
+										<Text style={{fontWeight: 'bold', fontSize: 15,}}>Client Message :<Text style={{fontWeight: 'normal', fontSize: 14,}}>{doc.data().discrip}</Text></Text>
+									</View>
+									<View>
+										<Text style={{fontWeight: 'bold', fontSize: 15,}}>Client Mobile:<Text style={{fontWeight: 'bold',}}> {doc.data().mobile}</Text></Text>
+									</View>
+								</View>
+							</View>   ],                            
                             
                           }))    
                     }
@@ -111,7 +120,8 @@ class Search2 extends Component{
                                 </View>
                                 <View>
                                     <Text style={{fontWeight: 'bold', fontSize: 15,}}>Client Mobile:<Text style={{fontWeight: 'bold',}}> {doc.data().mobile}</Text></Text>
-                                </View></View>  ],
+								</View></View>  ],
+								
                           }))   
                     }
                 }
@@ -120,7 +130,10 @@ class Search2 extends Component{
             alert(this.state.notification)
         })
     }
-
+	changeLayout = (key) => {
+		LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+		this.setState({ expanded: !this.state.expanded });
+	  }
     
     render(){
         return(
@@ -163,7 +176,26 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
+	},
+	text: {
+		fontSize: 17,
+		color: 'black',
+		padding: 10
+	},
+	btnText: {
+		textAlign: 'center',
+		color: 'white',
+		fontSize: 20
+	},
+	btnTextHolder: {
+		borderWidth: 1,
+		borderColor: 'rgba(0,0,0,0.5)'
+	},
+	
+	Btn: {
+		padding: 10,
+		backgroundColor: 'rgba(0,0,0,0.5)'
+	}
  
 })
   

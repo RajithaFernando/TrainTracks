@@ -80,6 +80,13 @@
 
 // AppRegistry.registerComponent(appName, () => AuthApp);
 
+import {AppRegistry} from 'react-native';
+
+import Panel from './src2/components/Auth/Panel';
+import {name as appName} from './app.json';
+
+AppRegistry.registerComponent(appName, () => Panel);
+
 // /////////////////////////////////
 
 
@@ -92,12 +99,12 @@
 
 
 // i am corrently Devloping this
-import {AppRegistry} from 'react-native';
+// import {AppRegistry} from 'react-native';
 
-import app5userad from './app5userad';
-import {name as appName} from './app.json';
+// import app5userad from './app5userad';
+// import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => app5userad);
+// AppRegistry.registerComponent(appName, () => app5userad);
 
 // ////////////////////////////////
 
