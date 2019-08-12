@@ -101,7 +101,20 @@ class Search2 extends Component{
       }
       
       
-  
+      nearst = ()=>{
+        navigator.geolocation.getCurrentPosition(
+          position => {
+              this.setState({
+                  region: {
+                      latitude: position.coords.latitude,
+                      longitude: position.coords.longitude,
+                      latitudeDelta: 0.0922,
+                      longitudeDelta: 0.0422,
+                  }})
+                },
+          { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 },
+      ).then(alert('got position'))
+    }
   
       findStation(query) {
           //method called everytime when we change the value of the input

@@ -5,6 +5,8 @@ import * as Progress from 'react-native-progress';
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
 
+// import { AdMobBanner } from 'react-native-admob';
+
 // import RNLocation from 'react-native-location';
 import Fire from './config/Fire'
 import firebase from '@firebase/app';
@@ -271,7 +273,9 @@ export default class app5userad extends Component {
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
                 </Button>
 				
+                <View><Text>ADsudo </Text>
                 
+                </View>
             </View>
         )
     }

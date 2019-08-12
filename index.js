@@ -73,12 +73,12 @@
 
 // ///////////////////////////////
 // this is the one GOTRIP
-import {AppRegistry} from 'react-native';
+// import {AppRegistry} from 'react-native';
 
-import AuthApp from './AuthApp';
-import {name as appName} from './app.json';
+// import AuthApp from './AuthApp';
+// import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => AuthApp);
+// AppRegistry.registerComponent(appName, () => AuthApp);
 
 // /////////////////////////////////
 
@@ -92,12 +92,12 @@ AppRegistry.registerComponent(appName, () => AuthApp);
 
 
 // i am corrently Devloping this
-// import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native';
 
-// import app5userad from './app5userad';
-// import {name as appName} from './app.json';
+import app5userad from './app5userad';
+import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent(appName, () => app5userad);
+AppRegistry.registerComponent(appName, () => app5userad);
 
 // ////////////////////////////////
 
@@ -110,3 +110,12 @@ AppRegistry.registerComponent(appName, () => AuthApp);
 // import distance from './distance';
 
 // AppRegistry.registerComponent('sharePlaces',() => distance);
+
+
+// /////////////////////
+// import {AppRegistry} from 'react-native';
+
+// import searchwithloc from './searchwithloc';
+// import {name as appName} from './app.json';
+
+// AppRegistry.registerComponent(appName, () => searchwithloc);
