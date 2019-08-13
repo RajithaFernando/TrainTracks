@@ -34,7 +34,7 @@ export default class App5 extends Component {
 
     
     componentDidMount() {
-   
+		
         const { navigation } = this.props;
         const trainName = navigation.getParam('trainName');
         const database = Fire.firestore()

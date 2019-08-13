@@ -202,10 +202,7 @@ export default class app5userad extends Component {
             return d;
         }
     }
-    // componentWillUnmount() {
-    //     clearInterval(this.intervalID);
-	//   }
-	
+
     render(){
         return(
             <View style={styles.container}> 
@@ -278,7 +275,7 @@ export default class app5userad extends Component {
                     onPress={()=>this.props.navigation.navigate('TrainDetails2')}>
                 </Button>
 				
-                <View><Text>ADsudo </Text>
+                <View style={styles.ad}><Text>ADsudo </Text>
                 
                 </View>
             </View>
@@ -320,5 +317,15 @@ const styles = StyleSheet.create({
     },
     inbetween:{
 
-    },
+	},
+	ad:{
+		flex: -1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+		alignItems: 'flex-end',
+		height: 100, 
+		width:'100%',
+		backgroundColor: 'steelblue'
+		
+	}
 })

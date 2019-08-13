@@ -5,8 +5,8 @@ import { SwitchNavigator, createStackNavigator ,createAppContainer} from 'react-
 import Loading from './src2/components/Auth/Loading'
 import Login from './src2/components/Auth/Login'
 import Main from './src2/components/Auth/Main'
-import Search from './src2/components/Auth/Search'
-import Search2 from './src2/components/Auth/Search2'
+import Hottels from './src2/components/Auth/Hottels'
+import Panel from './src2/components/Auth/Panel'
 
 // import App5user from './App5user'
 
@@ -17,11 +17,11 @@ const AuthApp = createStackNavigator(
       Login,
       Loading,
       Main,
-      Search,
-      Search2,
+	  Hottels,
+	  Panel
     },
     {
-      initialRouteName: 'Login'
+      initialRouteName: 'Loading'
     }
   )
   export default createAppContainer(AuthApp)

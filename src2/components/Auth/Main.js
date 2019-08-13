@@ -2,10 +2,19 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, Button ,TouchableOpacity} from 'react-native'
 
 
+import Fire from '../../../config2/Fire'
+require('firebase/auth');
+require('@firebase/database');
+require("firebase/firestore");
 
 export default class Main extends Component {
     state = { currentUser: null }
-    
+    componentDidMount() {
+		var user = Fire.auth().currentUser;
+		this.setState({
+			currentUser:user
+		})
+    }
     
     
     render() {
@@ -21,10 +30,10 @@ export default class Main extends Component {
                 </Text>
                     
                     <TouchableOpacity title="My Hottels"  style={[styles.but, { backgroundColor: "#056571"}]}
-                    onPress={() => this.props.navigation.navigate('Search')} 
+                    onPress={() => this.props.navigation.navigate('Hottels')} 
                     ><Text>My Hottels</Text></TouchableOpacity>
                     <TouchableOpacity title="My Vehicals" style={[styles.but, { backgroundColor: "#056571"}]}
-                    onPress={() => this.props.navigation.navigate('Search2')} 
+                    onPress={() => this.props.navigation.navigate('Panel')} 
                     ><Text>My Vehicals</Text></TouchableOpacity>
                     <TouchableOpacity title="Logout" style={[styles.but2, { backgroundColor: "#414141"}]} 
                     ><Text>Log Out</Text></TouchableOpacity>
