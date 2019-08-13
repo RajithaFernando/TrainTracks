@@ -80,12 +80,12 @@
 
 // AppRegistry.registerComponent(appName, () => AuthApp);
 
-import {AppRegistry} from 'react-native';
+// import {AppRegistry} from 'react-native';
 
-import Panel from './src2/components/Auth/Panel';
-import {name as appName} from './app.json';
+// import Panel from './src2/components/Auth/Panel';
+// import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => Panel);
+// AppRegistry.registerComponent(appName, () => Panel);
 
 // /////////////////////////////////
 
@@ -120,9 +120,9 @@ AppRegistry.registerComponent(appName, () => Panel);
 
 
 // /////////////////////
-// import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native';
 
-// import searchwithloc from './searchwithloc';
-// import {name as appName} from './app.json';
+import app5userad from './app5userad';
+import {name as appName} from './app.json';
 
-// AppRegistry.registerComponent(appName, () => searchwithloc);
+AppRegistry.registerComponent(appName, () => app5userad);

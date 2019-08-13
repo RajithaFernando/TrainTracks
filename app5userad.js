@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View ,Dimensions, Button, ActivityIndicator} from 'react-native';
 import * as Progress from 'react-native-progress';
+// import { Icon } from 'react-native-elements'
 
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
@@ -17,7 +18,6 @@ require("firebase/firestore");
 
 export default class app5userad extends Component {
 
-    intervalID = 0
     constructor(props){
 		super(props);
         this.state = {
@@ -54,21 +54,24 @@ export default class app5userad extends Component {
         var names=[]
         var lats=[]
         var lngs=[]
-        var lat = null 
-        var lon = null
+        let lat 
+        let lon 
         var timeUpdate = null
         var timedif = null
         const database = Fire.firestore()
-        var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+		var trainsref = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
+		var trainsref22 = database.collection('trains').doc('fdwIkN8LK0rg33ncpsJ9')
         var timeNow = Date.now()
         var side =''
-        var trainref = database.collection('trains').doc('locations')
-        this.intervalID = setInterval( ()=>{ trainsref.get().then(function(doc) {    
-            if (doc.exists) {
-                lat = doc.data().lat
-                lon = doc.data().lng
-                timeUpdate = doc.data().time
-                side = doc.data().Details.side
+		var trainref = database.collection('trains').doc('locations')
+		
+		let quert2 = trainsref22.onSnapshot(docSnapshot => {
+			
+			if (docSnapshot.exists){
+				lat = docSnapshot.data().lat
+                lon = docSnapshot.data().lng
+                timeUpdate = docSnapshot.data().time
+                side = docSnapshot.data().Details.side
                 // var region = {...this.state.region}
                 // region.latitude =  lat
                 // region.longitude = lon
@@ -99,15 +102,14 @@ export default class app5userad extends Component {
                 })
                 var query = trainref.get().then(function(doc) {
                     if (doc.exists){
-                        // lert('this'+doc.data().names)
                         names = doc.data().names
                         lats = doc.data().latitude
                         lngs = doc.data().longitude
-                        // alert(lats)
                         var tlat =lat
                         var tlon = lon
                         var leng =names.length
-                        distancefrom = []
+						distancefrom = []
+						// lert(tlat +'lert t lat')
                         var closest
                         
                         for (i=0;i <leng; i++){
@@ -116,10 +118,10 @@ export default class app5userad extends Component {
                         }
                         // lert('came hear')
                         closest = Math.min(...distancefrom)
-                        alert('closest is '+ closest)
+                        // lert('closest is '+ closest)
                         var indexOfClosest = distancefrom.indexOf(closest)
                         // lert('index of closest' + indexOfClosest)
-                        if (closest<0.5){
+                        if (closest<0.4){
                             this.setState({
                                 LeftStation:names[indexOfClosest],
                                 RightStation:'Train is now waiting at ' + names[indexOfClosest]+' Station',
@@ -134,7 +136,7 @@ export default class app5userad extends Component {
                             var closeup = distance(lats[upstation],lngs[upstation],tlat,tlon)
                             var closedown = distance(lats[downstation],lngs[downstation],tlat,tlon)
                             if (closeup < closedown){
-                                alert('train is between upstation and station')
+                                //  lert('train is between upstation and station')
                                 var distancebetween = distance(lats[upstation],lngs[upstation],lats[indexOfClosest],lngs[indexOfClosest])
                                 var progress = (closeup / distancebetween)
                                 if (side == 'up'){
@@ -147,17 +149,16 @@ export default class app5userad extends Component {
                                 else {
                                     this.setState({
                                         LeftStation:names[upstation],
-                                        CamefromName:names[indexOfClosest],
+                                        RightStation:names[indexOfClosest],
                                         progressbar:progress
                                     })
                                 }
-                                // alert('Going to'+names[indexOfClosest])
                             }
                             else {
-                                alert('train is between downstation and station')
+                                // lert('train is between downstation and station')
                                 var distancebetween = distance(lats[downstation],lngs[downstation],lats[indexOfClosest],lngs[indexOfClosest])
                                 var progress =(closedown / distancebetween)
-                                alert('Distance Between' + distancebetween)
+                                // lert('Distance Between' + distancebetween)
                                 if (side=='up'){
                                     this.setState({
                                         LeftStation:names[indexOfClosest],
@@ -182,12 +183,13 @@ export default class app5userad extends Component {
             else{
                 alert('Sorry ! Data Not Available')
             }
-        }.bind(this)).catch(err => {
-                // lert('Error getting Data. Check your Connection and try Again');
-                });
-            
-        }, 10000)
-        alert(this.state.GoingtoName)
+
+			
+		  }, err => {
+			
+		  });
+        
+        //  lert(this.state.GoingtoName)
         var distance =(stlat,stlon,trlat,trlon)=>{
             var R = 6371; // km (change this constant to get miles)
 	        var dLat = (trlat-stlat) * Math.PI / 180;
@@ -200,9 +202,10 @@ export default class app5userad extends Component {
             return d;
         }
     }
-    componentWillUnmount() {
-        clearInterval(this.intervalID);
-      }
+    // componentWillUnmount() {
+    //     clearInterval(this.intervalID);
+	//   }
+	
     render(){
         return(
             <View style={styles.container}> 
@@ -225,7 +228,9 @@ export default class app5userad extends Component {
                     <Marker coordinate={{
                         latitude:this.state.latitude,
                         longitude: this.state.longitude}}
-                        image={require('./img/icon.png')} >
+                        pinColor={'tan'} 
+						 >
+						 
                     </Marker>
                     </MapView>
                     

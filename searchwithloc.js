@@ -1,6 +1,10 @@
 import React, {Component} from "react";
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Autocomplete from 'react-native-autocomplete-input';
+
+import Fire from './config/Fire'
+require('firebase/auth');
+require('@firebase/database');
+require("firebase/firestore");
 
 export default class searchwithloc extends Component {
 
@@ -8,38 +12,49 @@ export default class searchwithloc extends Component {
 		currentLongitude: 'unknown', //Initial Longitude
 		currentLatitude: 'unknown', //Initial Latitude
 	  };
-	  componentDidMount = () => {
-		navigator.geolocation.getCurrentPosition(
-		  //Will give you the current location
-		  position => {
-			const currentLongitude = JSON.stringify(position.coords.longitude);
-			//getting the Longitude from the location json
-			const currentLatitude = JSON.stringify(position.coords.latitude);
-			//getting the Latitude from the location json
-			this.setState({ currentLongitude: currentLongitude });
-			//Setting state Longitude to re re-render the Longitude Text
-			this.setState({ currentLatitude: currentLatitude });
-			//Setting state Latitude to re re-render the Longitude Text
-		  },
-		  error => alert(error.message),
-		  { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-		);
-		this.watchID = navigator.geolocation.watchPosition(position => {
-		  //Will give you the location on location change
-		  console.log(position);
-		  const currentLongitude = JSON.stringify(position.coords.longitude);
-		  //getting the Longitude from the location json
-		  const currentLatitude = JSON.stringify(position.coords.latitude);
-		  //getting the Latitude from the location json
-		  this.setState({ currentLongitude: currentLongitude });
-		  //Setting state Longitude to re re-render the Longitude Text
-		  this.setState({ currentLatitude: currentLatitude });
-		  //Setting state Latitude to re re-render the Longitude Text
-		  alert('a')
-		});
-	  };
+
+	  componentDidMount() {
+        const database = Fire.firestore()
+        var reference = database.collection('stationlocations').doc('weyangoda-fort')
+        
+        
+        // update = d.toString() 
+        this.intervalID = setInterval ( ()=> {
+			var time = Date.now(); 
+			var latitude
+			var longitude
+			var timestamp
+			var query = reference.get().then (function(doc){
+				navigator.geolocation.getCurrentPosition(
+					position => {
+						latitude =doc.data().lat + ','+position.coords.latitude,
+						longitude= doc.data().lon + ',' +position.coords.longitude,
+						timestamp = doc.data().timestamp + ','+ time,
+						reference.update({
+							lat: latitude,
+							lon: longitude, 
+							timestamp: timestamp,
+						}).then(()=>{
+							alert('firebase updated')
+							}).catch(function(error) {
+								alert('Error writing new message to Firebase Database');
+								})
+					},
+					(error) => console.log(error.message),
+					{ enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 },
+					
+				);
+				
+				
+			})
+            
+			
+         }, 1000)
+        //  clearInterval(interval1)
+         
+    }
 	  componentWillUnmount = () => {
-		navigator.geolocation.clearWatch(this.watchID);
+		clearInterval(this.intervalID);
 	  };
 	  render() {
 		return (
