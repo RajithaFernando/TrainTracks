@@ -73,12 +73,12 @@
 
 // ///////////////////////////////
 // this is the one GOTRIP
-import {AppRegistry} from 'react-native';
+// import {AppRegistry} from 'react-native';
 
-import AuthApp from './AuthApp';
-import {name as appName} from './app.json';
-console.disableYellowBox = true;
-AppRegistry.registerComponent(appName, () => AuthApp);
+// import AuthApp from './AuthApp';
+// import {name as appName} from './app.json';
+// console.disableYellowBox = true;
+// AppRegistry.registerComponent(appName, () => AuthApp);
 
 // import {AppRegistry} from 'react-native';
 
@@ -134,12 +134,12 @@ AppRegistry.registerComponent(appName, () => AuthApp);
 
 // AppRegistry.registerComponent(appName, () => app5userad);
 
-// import {AppRegistry} from 'react-native';
+import {AppRegistry} from 'react-native';
 
-// import help from './src2/components/Auth/help';
-// import {name as appName} from './app.json';
-
-// AppRegistry.registerComponent(appName, () => help);
+import help from './help';
+import {name as appName} from './app.json';
+console.disableYellowBox = true;
+AppRegistry.registerComponent(appName, () => help);
 
 
 // ////location getting script

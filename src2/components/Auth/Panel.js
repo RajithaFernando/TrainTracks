@@ -120,7 +120,7 @@ export default class Panel extends Component {
                 var start = doc.data().start
                 var end = doc.data().end
 
-                starttimedif =  Math.round((time-start)/1000)
+                starttimedif =  Math.round((start-time)/1000)
                 endtimedif =  Math.round((end-time)/1000)
 
                 var sh = Math.floor(starttimedif / 3600);
@@ -141,10 +141,10 @@ export default class Panel extends Component {
 						head==<Text style={{fontWeight: 'bold', fontSize: 20, color: '#56A926'}}>Pickup</Text>
                         if (sh <1){
 							timeshort = sm + 'M' +ss +' Sec'
-                            timeremaning = sm + 'minits  and ' +ss +' Seconds remaning'
+                            timeremaning = sm + ' minits  and ' +ss +' Seconds remaning'
                         }
                         else{
-							timeremaning = sh + 'hours  and ' +sm +' Minits remaning'
+							timeremaning = sh + ' hours  and ' +sm +' Minits remaning'
 							timeshort = sh + 'H' +sm +' Min'
 						}
 						
@@ -155,11 +155,11 @@ export default class Panel extends Component {
 						head=<Text style={{fontWeight: 'bold', fontSize: 20, color: '#C54024'}}>Return</Text>
                         if (eh <1){
 							timeshort = em + 'M' +es +' Sec'
-                            timeremaning = em + 'minits  and ' +es +' Seconds remaning'
+                            timeremaning = em + ' minits  and ' +es +' Seconds remaning'
                         }
                         else {
 							timeshort = eh + 'H' +em +' Min'
-                            timeremaning = eh + 'hours  and ' +em +' Minits remaning'
+                            timeremaning = eh + ' hours  and ' +em +' Minits remaning'
 						}	
 						
 						

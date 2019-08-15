@@ -114,7 +114,7 @@ export default class Hottels extends Component {
         var docRef = db.collection('hotels')
         var query = docRef.where('user', '==', 'admin@gmail.com').get().then(snapshot=>{
             if (snapshot.empty) {
-                alert('No matching documents.');
+                alert('No  Notifications');
                 return;
               }
             snapshot.docs.forEach(doc=>{
@@ -122,9 +122,9 @@ export default class Hottels extends Component {
                 var time = Date.now()
                 var start = doc.data().start
                 var end = doc.data().end
-				alert(time)
-                starttimedif =  Math.round((time-start)/1000)
-                endtimedif =  Math.round((end-time)/1000)
+				// lert(time)
+                starttimedif =  Math.round((start-time)/1000)
+                endtimedif =  Math.round((end-end)/1000)
 
                 var sh = Math.floor(starttimedif / 3600);
                 var sm = Math.floor(starttimedif % 3600 / 60);
@@ -144,10 +144,10 @@ export default class Hottels extends Component {
 						head==<Text style={{fontWeight: 'bold', fontSize: 20, color: '#56A926'}}>New Booking</Text>
                         if (sh <1){
 							timeshort = sm + 'M' +ss +' Sec'
-                            timeremaning = sm + 'minits  and ' +ss +' Seconds remaning'
+                            timeremaning = sm + ' minits  and ' +ss +' Seconds remaning'
                         }
                         else{
-							timeremaning = sh + 'hours  and ' +sm +' Minits remaning'
+							timeremaning = sh + ' hours  and ' +sm +' Minits remaning'
 							timeshort = sh + 'H' +sm +' Min'
 						}
 						
@@ -158,11 +158,11 @@ export default class Hottels extends Component {
 						head=<Text style={{fontWeight: 'bold', fontSize: 20, color: '#C54024'}}>Booking End</Text>
                         if (eh <1){
 							timeshort = em + 'M' +es +' Sec'
-                            timeremaning = em + 'minits  and ' +es +' Seconds remaning'
+                            timeremaning = em + ' minits  and ' +es +' Seconds remaning'
                         }
                         else {
 							timeshort = eh + 'H' +em +' Min'
-                            timeremaning = eh + 'hours  and ' +em +' Minits remaning'
+                            timeremaning = eh + ' hours  and ' +em +' Minits remaning'
 						}	
 						
 						
