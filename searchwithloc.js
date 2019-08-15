@@ -49,7 +49,7 @@ export default class searchwithloc extends Component {
 			})
             
 			
-         }, 1000)
+		}, 1000*15)
         //  clearInterval(interval1)
          
     }

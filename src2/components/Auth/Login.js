@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native'
+import { StyleSheet, Text, TextInput, View, Button ,TouchableOpacity,ImageBackground} from 'react-native'
 
 import Fire from '../../../config2/Fire'
 require('firebase/auth');
@@ -32,8 +32,14 @@ export default class Login extends Component {
     render() {
         return (
         <View style={styles.container}>
-        
-            <Text>Login</Text>
+			<ImageBackground
+				accessibilityRole={'image'}
+				source={require('./gotrip.jpeg')}
+				style={styles.background}
+				imageStyle={styles.logo}>
+				
+			</ImageBackground>
+            <Text style={styles.text}>Login To Go Trip</Text>
             
             <TextInput
                 style={styles.textInput}
@@ -50,7 +56,7 @@ export default class Login extends Component {
                 onChangeText={password => this.setState({ password })}
                 value={this.state.password}
             />
-            <Button title="Login" onPress={this.props.navigation.navigate('Main')}/>
+            <TouchableOpacity style={[styles.but, { backgroundColor: "#1BBEB2"}]}  onPress={this.handleLogin}><Text style={{textAlign: 'center'}}>Login</Text></TouchableOpacity>
             
         </View>
         )
@@ -68,5 +74,41 @@ const styles = StyleSheet.create({
       borderColor: 'gray',
       borderWidth: 1,
       marginTop: 8
-    }
+	},
+	but:{
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 25,
+        paddingRight: 25,
+        alignSelf: 'center',
+        borderRadius: 5,
+        marginTop: 10,
+        marginBottom: 35,
+        width:'90%',
+        height:50,
+        justifyContent: 'center',
+		paddingHorizontal: 10,
+		textAlign: 'center'
+	},
+	background: {
+		paddingBottom: 40,
+		paddingTop: 96,
+		paddingHorizontal: 20,
+		// backgroundColor: '#F3F3F3',
+	  },
+	  logo: {
+		opacity: 0.2,
+		overflow: 'visible',
+		resizeMode: 'cover',
+		marginRight: -150,
+		marginLeft: -150,
+		marginBottom: -150,
+	  },
+	  text: {
+		fontSize: 20,
+		fontWeight: '400',
+		textAlign: 'center',
+		color: '#050605',
+		
+	  },
   })

@@ -12,36 +12,47 @@ export default class Main extends Component {
     componentDidMount() {
 		var user = Fire.auth().currentUser;
 		this.setState({
-			currentUser:user
+			currentUser:user.email
 		})
     }
-    
+    signOutUser = async () => {
+        try {
+            await Fire.auth().signOut();
+            () => this.props.navigation.navigate('Login')
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
     render() {
-        
-        // const curuser = this.state.curuser
+    
+        // const curuser = this.state.curuse
         return (
             <View style={styles.container}>
                 <View style={styles.container2}>
-                    <Text>Welcome Back UserName</Text>
+                    <Text>Welcome Back </Text>
                 </View>
                 <Text>
                 Hi 
                 </Text>
                     
-                    <TouchableOpacity title="My Hottels"  style={[styles.but, { backgroundColor: "#056571"}]}
+                    <TouchableOpacity title="My Hottels"  style={[styles.but, { backgroundColor: "#1F8A56"}]}
                     onPress={() => this.props.navigation.navigate('Hottels')} 
-                    ><Text>My Hottels</Text></TouchableOpacity>
-                    <TouchableOpacity title="My Vehicals" style={[styles.but, { backgroundColor: "#056571"}]}
+                    ><Text style={{textAlign: 'center' ,fontSize: 20,fontWeight: '400',color: '#000',}}>My Hotels</Text></TouchableOpacity>
+                    <TouchableOpacity title="My Vehicals" style={[styles.but, { backgroundColor: "#1F8A56"}]}
                     onPress={() => this.props.navigation.navigate('Panel')} 
-                    ><Text>My Vehicals</Text></TouchableOpacity>
-                    <TouchableOpacity title="Logout" style={[styles.but2, { backgroundColor: "#414141"}]} 
-                    ><Text>Log Out</Text></TouchableOpacity>
-                    <View style={styles.nitify}>
+                    ><Text style={{textAlign: 'center',fontSize: 20,fontWeight: '400',color: '#000',}}>My Vehicles</Text></TouchableOpacity>
+                    
+					<View style={styles.nitify}>
 
                     </View>
+					<TouchableOpacity title="Logout" style={[styles.but2, { backgroundColor: "#1BBEB2"}]} 
+                    onPress={this.signOutUser}
+					><Text>Log Out</Text></TouchableOpacity>
                     
-                    <Text>Go-Trip App</Text>
+                    
+                    <Text>Go Trip App</Text>
             </View>
         )
     }
@@ -54,7 +65,8 @@ const styles = StyleSheet.create({
     },
     nitify:{
         padding:10,
-        backgroundColor:'#eee',
+		backgroundColor:'#eee',
+		textAlign: 'center'
     },
     container2: {
         width:'100%',
@@ -76,7 +88,8 @@ const styles = StyleSheet.create({
         width:'90%',
         height:50,
         justifyContent: 'center',
-        paddingHorizontal: 10
+		paddingHorizontal: 10,
+		textAlign: 'center'
     },
     but2:{
         paddingTop: 10,

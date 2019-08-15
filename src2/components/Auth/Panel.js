@@ -151,9 +151,9 @@ export default class Panel extends Component {
                                 
 						
 					}
-					else if (true){
+					else if (eh <24){
 						head=<Text style={{fontWeight: 'bold', fontSize: 20, color: '#C54024'}}>Return</Text>
-                        if (sh <1){
+                        if (eh <1){
 							timeshort = em + 'M' +es +' Sec'
                             timeremaning = em + 'minits  and ' +es +' Seconds remaning'
                         }

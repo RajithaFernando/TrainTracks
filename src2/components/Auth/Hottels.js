@@ -122,7 +122,7 @@ export default class Hottels extends Component {
                 var time = Date.now()
                 var start = doc.data().start
                 var end = doc.data().end
-
+				alert(time)
                 starttimedif =  Math.round((time-start)/1000)
                 endtimedif =  Math.round((end-time)/1000)
 
@@ -154,9 +154,9 @@ export default class Hottels extends Component {
                                 
 						
 					}
-					else if (true){
-						head=<Text style={{fontWeight: 'bold', fontSize: 20, color: '#C54024'}}>Booking Relese</Text>
-                        if (sh <1){
+					else if (eh < 24){
+						head=<Text style={{fontWeight: 'bold', fontSize: 20, color: '#C54024'}}>Booking End</Text>
+                        if (eh <1){
 							timeshort = em + 'M' +es +' Sec'
                             timeremaning = em + 'minits  and ' +es +' Seconds remaning'
                         }
@@ -204,7 +204,7 @@ export default class Hottels extends Component {
 	render() {
 	  return (
 		<View style={styles.container}>
-		  <Text style={styles.topHeading}>My Hottels Notifications</Text>
+		  <Text style={styles.topHeading}>My Hotels Notifications</Text>
 		  {
 			this.state.updated ?
 			<ScrollView>
